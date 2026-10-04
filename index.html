@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الفلكي</title>
+<meta name="theme-color" content="#0b1240">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#e9edf6;--c:#fff;--t:#16203a;--m:#5b6785;--a:#2f3fa0;--b:#d3daea;--h:#f1f4fb;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#060a18;--c:#0e1531;--t:#e6eaf7;--m:#8d9bc4;--a:#e3b25b;--b:#1f2a55;--h:#131c40}}
+:root[data-theme=dark]{--bg:#060a18;--c:#0e1531;--t:#e6eaf7;--m:#8d9bc4;--a:#e3b25b;--b:#1f2a55;--h:#131c40}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--t);font:15px/1.5 "Noto Kufi Arabic","Noto Sans Arabic",system-ui,Tahoma,sans-serif;padding-bottom:78px}
+button{font:inherit;cursor:pointer}
+.hd{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:linear-gradient(160deg,#0b1240,#2a1a5e);color:#fff}
+.hd h1{margin:0;font-size:21px}.hd small{opacity:.75}
+#dgt{border:1px solid #fff6;background:#fff1;color:#fff;border-radius:20px;padding:4px 14px}
+main{max-width:640px;margin:auto;padding:12px}
+section{display:none}section.on{display:block}
+.w{background:var(--c);border:1px solid var(--b);border-radius:16px;margin-bottom:12px;overflow:hidden}
+.w h3{margin:0;padding:9px 14px;background:var(--h);font-size:14px;color:var(--a);border-inline-start:4px solid var(--a)}
+.r{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:7px 14px;border-top:1px solid var(--b)}
+.r b{font-weight:400;color:var(--m);font-size:14px}
+.r span{direction:ltr;unicode-bidi:isolate;text-align:left;font-variant-numeric:tabular-nums}
+.r span.rt{direction:rtl}
+.nx{background:var(--h)}.nx b{color:var(--a);font-weight:700}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--c);border-top:1px solid var(--b);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;border:0;background:none;color:var(--m);padding:7px 0;font-size:11px}
+nav button.on{color:var(--a);font-weight:700}
+nav i{display:block;font-size:20px;font-style:normal}
+.sg{display:flex;gap:6px;padding:10px 14px}
+.sg button,.f button{border:1px solid var(--b);background:var(--bg);color:var(--t);border-radius:10px;padding:8px 12px}
+.sg button{flex:1}.sg button.on{background:var(--a);color:var(--c);border-color:var(--a)}
+.f{display:flex;align-items:center;gap:6px;padding:6px 14px}.f label{flex:0 0 118px;color:var(--m);font-size:13px}
+input{flex:1;min-width:0;font:inherit;color:var(--t);background:var(--bg);border:1px solid var(--b);border-radius:10px;padding:8px;direction:ltr;text-align:center}
+input[readonly]{opacity:.65}
+#ms{flex:1;color:var(--m);font-size:13px}
+.clk{font-size:46px;font-weight:600;text-align:center;direction:ltr;color:var(--a);padding-top:12px;font-variant-numeric:tabular-nums}
+.dy,.hj{text-align:center}.hj{color:var(--m);padding-bottom:14px}
+.hero{display:flex;align-items:center;gap:16px;padding:14px}.hero .ph{font-size:20px;font-weight:600;color:var(--a)}
+#hm{display:grid;gap:6px;padding:10px 14px}#hm button{border:1px solid var(--b);background:var(--bg);color:var(--t);border-radius:10px;padding:9px;text-align:start}#hm button.on{background:var(--a);color:var(--c);border-color:var(--a)}
+</style>
+</head>
+<body>
+<header class="hd"><div><h1>🔭 الفلكي</h1><small>الشمس والقمر والصلاة والوقت النجمي</small></div><button id="dgt"></button></header>
+<main>
+<section id="s0" class="on">
+<div class="w"><h3>📍 الموقع الجغرافي</h3>
+<div class="sg" id="gm"><button data-v="1">تلقائي</button><button data-v="0">يدوي</button></div>
+<div class="f"><label>خط العرض (+ شمال)</label><input id="lat" data-k inputmode="decimal"><button class="pm" data-s="lat">±</button></div>
+<div class="f"><label>خط الطول (+ شرق)</label><input id="lon" data-k inputmode="decimal"><button class="pm" data-s="lon">±</button></div>
+<div class="f"><label>المنطقة الزمنية UTC</label><input id="tz" data-k inputmode="decimal"><button class="pm" data-s="tz">±</button></div>
+<div class="f"><span id="ms"></span><button id="ga">📡 تحديد الموقع</button></div></div>
+<div class="w"><h3>🕐 التاريخ والوقت</h3>
+<div class="sg" id="tmd"><button data-v="1">الآن</button><button data-v="0">وقت محدد</button></div>
+<div id="man" hidden>
+<div class="f"><label>التاريخ الغريغوري</label><input id="dd" data-k type="date"></div>
+<div class="f"><label>الوقت (24 ساعة)</label><input id="hh" data-k inputmode="numeric" placeholder="ساعة"><input id="mm" data-k inputmode="numeric" placeholder="دقيقة"><input id="ss" data-k inputmode="numeric" placeholder="ثانية"></div></div>
+<div id="o0"></div></div>
+</section>
+<section id="s1"></section><section id="s2"></section><section id="s3"></section><section id="s4"></section>
+<section id="s5"><div class="w"><h3>📅 طريقة حساب التاريخ الهجري</h3><div id="hm"></div>
+<div class="f"><label>تعديل بالأيام</label><button data-o="-1">−</button><input id="ho" readonly><button data-o="1">+</button></div>
+<div class="f"><label>اليوم يبدأ عند الغروب</label><div class="sg" id="hs" style="flex:1;padding:0"><button data-v="0">لا</button><button data-v="1">نعم</button></div></div></div>
+<div class="w"><h3>🔎 تاريخ اليوم بكل الطرق</h3><div id="hc"></div></div></section>
+</main>
+<nav><button class="on"><i>📍</i>الموقع</button><button><i>🕌</i>الصلوات</button><button><i>☀️</i>الشمس</button><button><i>🌙</i>القمر</button><button><i>✨</i>النجمي</button><button><i>⚙️</i>الإعدادات</button></nav>
+<script>
+const $=q=>document.querySelector(q),P=Math.PI/180,sn=x=>Math.sin(x*P),cs=x=>Math.cos(x*P),as=Math.asin,at=Math.atan2,
+n360=x=>(x%360+360)%360,n180=x=>{x=n360(x);return x>180?x-360:x},dg=x=>x/P,p2=n=>String(n).padStart(2,'0'),DT=69/86400,
+ac=x=>dg(Math.acos(Math.max(-1,Math.min(1,x)))),
+num=s=>parseFloat(String(s).replace(/[٠-٩]/g,c=>c.charCodeAt(0)-1632).replace(/[٫,،]/g,'.').replace(/[−–]/g,'-')),
+cl=(x,m)=>Math.min(Math.max(x||0,0),m);
+let st={auto:true,lat:21.4225,lon:39.8262,tz:3,now:true,ar:false,d:'',hh:0,mm:0,ss:0,hm:'umalqura',ho:0,hs:false};
+try{Object.assign(st,JSON.parse(localStorage.getItem('astro')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('astro',JSON.stringify({auto:st.auto,lat:st.lat,lon:st.lon,tz:st.tz,ar:st.ar,hm:st.hm,ho:st.ho,hs:st.hs}))}catch(e){}};
+/* تنسيق */
+const E=s=>st.ar?String(s).replace(/\d+(\.\d+)?/g,m=>m.replace(/\d/g,c=>'٠١٢٣٤٥٦٧٨٩'[c]).replace('.','٫')+'\u200e'):s,
+N=s=>`<bdi dir=ltr>${s}</bdi>`,U=(n,u)=>N(n)+' '+u,
+dms=(x,g)=>{const t=Math.round(Math.abs(x)*36000);return(x<0?'−':g?'+':'')+(t/36000|0)+'° '+p2(t%36000/600|0)+'′ '+(t%600/10).toFixed(1).padStart(4,'0')+'″'},
+hms=x=>{const t=Math.round((x%24+24)%24*36000)%864000;return p2(t/36000|0)+'ʰ '+p2(t%36000/600|0)+'ᵐ '+(t%600/10).toFixed(1).padStart(4,'0')+'ˢ'},
+tm=(j,s)=>{if(!(j>0))return'—';const u=s?1:60,t=Math.round((((j+.5+st.tz/24)%1)+1)%1*86400/u)*u%86400;return p2(t/3600|0)+':'+p2(t%3600/60|0)+(s?':'+p2(t%60):'')},
+dur=d=>{const s=Math.round(d*86400);return p2(s/3600|0)+':'+p2(s%3600/60|0)+':'+p2(s%60)},
+dt=j=>new Date((j-2440587.5+st.tz/24)*864e5);
+let G,Hj;try{G=new Intl.DateTimeFormat('ar-u-ca-gregory-nu-latn',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});Hj=new Intl.DateTimeFormat('ar-u-ca-islamic-umalqura-nu-latn',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'})}catch(e){G=Hj={format:()=>'—'}}
+/* الفلك */
+const JD=(y,m,d,h)=>{if(m<3){y--;m+=12}const A=Math.floor(y/100);return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+h/24+2-A+Math.floor(A/4)-1524.5},
+nut=T=>{const o=125.04452-1934.136261*T,l=280.4665+36000.7698*T;return{dpsi:-.004778*sn(o)-.000366*sn(2*l),eps:23.4392911-.0130042*T+.002556*cs(o)+.000158*cs(2*l)}},
+eq=(l,b,e)=>({ra:n360(dg(at(sn(l)*cs(e)-Math.tan(b*P)*sn(e),cs(l)))),dec:dg(as(sn(b)*cs(e)+cs(b)*sn(e)*sn(l)))}),
+fin=o=>{const n=nut(o.T),p=dg(as(6378.14/o.km));return Object.assign(o,eq(o.lon,o.lat,n.eps),{dpsi:n.dpsi,eps:n.eps,par:p,sd:o.r?0.26656/o.r:0.2725*p})},
+sun=j=>{const T=(j+DT-2451545)/36525,L=280.46646+36000.76983*T,M=357.52911+35999.05029*T,e=.016708634-4.2037e-5*T,
+C=(1.914602-.004817*T)*sn(M)+(.019993-1.01e-4*T)*sn(2*M)+2.89e-4*sn(3*M),r=1.000001018*(1-e*e)/(1+e*cs(M+C));
+return fin({lon:n360(L+C-.00569-.00478*sn(125.04-1934.136*T)),lat:0,km:r*149597870.7,r,L,T})},
+MT=[[0,0,1,0,6288774,-20905355],[2,0,-1,0,1274027,-3699111],[2,0,0,0,658314,-2955968],[0,0,2,0,213618,-569925],[0,1,0,0,-185116,48888],[0,0,0,2,-114332,-3149],[2,0,-2,0,58793,246158],[2,-1,-1,0,57066,-152138],[2,0,1,0,53322,-170733],[2,-1,0,0,45758,-204586],[0,1,-1,0,-40923,-129620],[1,0,0,0,-34720,108743],[0,1,1,0,-30383,104755],[2,0,0,-2,15327,10321],[0,0,1,2,-12528,0],[0,0,1,-2,10980,79661],[4,0,-1,0,10675,-34782],[0,0,3,0,10034,-23210],[4,0,-2,0,8548,-21636],[2,1,-1,0,-7888,24208],[2,1,0,0,-6766,30824],[1,0,-1,0,-5163,-8379],[1,1,0,0,4987,-16675],[2,-1,1,0,4036,-12831],[2,0,2,0,3994,-10445],[4,0,0,0,3861,-11650],[2,0,-3,0,3665,14403],[0,1,-2,0,-2689,-7003]],
+BT=[[0,0,0,1,5128122],[0,0,1,1,280602],[0,0,1,-1,277693],[2,0,0,-1,173237],[2,0,-1,1,55413],[2,0,-1,-1,46271],[2,0,0,1,32573],[0,0,2,1,17198],[2,0,1,-1,9266],[0,0,2,-1,8822],[2,-1,0,-1,8216],[2,0,-2,-1,4324],[2,0,1,1,4200],[2,1,0,-1,-3359]],
+moon=j=>{const T=(j+DT-2451545)/36525,Lp=218.3164477+481267.88123421*T,D=297.8501921+445267.1114034*T,M=357.5291092+35999.0502909*T,Mp=134.9633964+477198.8675055*T,F=93.272095+483202.0175233*T,
+E1=1-.002516*T,A1=119.75+131.849*T,A2=53.09+479264.29*T;
+let l=3958*sn(A1)+1962*sn(Lp-F)+318*sn(A2),r=0,b=0;
+for(const t of MT){const a=t[0]*D+t[1]*M+t[2]*Mp+t[3]*F,f=t[1]?E1:1;l+=t[4]*f*sn(a);r+=t[5]*f*cs(a)}
+for(const t of BT){const a=t[0]*D+t[1]*M+t[2]*Mp+t[3]*F;b+=t[4]*(t[1]?E1:1)*sn(a)}
+return fin({lon:n360(Lp+l/1e6+nut(T).dpsi),lat:b/1e6,km:385000.56+r/1e3,T})},
+gmst=j=>n360(280.46061837+360.98564736629*(j-2451545)+3.87933e-4*((j-2451545)/36525)**2),
+rf=h=>h<-1?0:1.02/Math.tan((h+10.3/(h+5.11))*P)/60;
+function hz(b,j){const n=nut((j-2451545)/36525),H=n180(gmst(j)+n.dpsi*cs(n.eps)+st.lon-b.ra),p=st.lat,
+al=dg(as(sn(p)*sn(b.dec)+cs(p)*cs(b.dec)*cs(H))),az=n360(dg(at(sn(H),cs(H)*sn(p)-Math.tan(b.dec*P)*cs(p)))+180);
+return{H,alt:al,az,top:al-b.par*cs(al)}}
+function roots(f,a,b,n){const o=[];let t0=a,f0=f(a);for(let i=1;i<=n;i++){const t1=a+(b-a)*i/n,f1=f(t1);
+if((f0<0)!==(f1<0)){let lo=t0,hi=t1,fl=f0;for(let k=0;k<24;k++){const m=(lo+hi)/2,fm=f(m);if((fm<0)===(fl<0)){lo=m;fl=fm}else hi=m}o.push({t:(lo+hi)/2,up:f1>=0})}
+t0=t1;f0=f1}return o}
+function ev(f,j0){const rs=roots(j=>{const b=f(j);return hz(b,j).top+.5667+b.sd},j0,j0+1,144),
+tr=roots(j=>hz(f(j),j).H,j0,j0+1,144).filter(r=>r.up&&Math.abs(hz(f(r.t),r.t).H)<1);
+return{rise:(rs.find(r=>r.up)||{}).t,set:(rs.find(r=>!r.up)||{}).t,tr:(tr[0]||{}).t}}
+const elf=j=>n180(moon(j).lon-sun(j).lon),conj=t=>{for(let i=0;i<9;i++)t-=elf(t)/12.19;return t};
+const HM={umalqura:'أم القرى (السعودية)',civil:'مدني جدولي (أصل الجمعة)',tbla:'فلكي جدولي (أصل الخميس)',obs:'حساب الهلال: اقتران قبل الغروب + مكث القمر'},HF={},dc={},
+hf=c=>HF[c]||(HF[c]=new Intl.DateTimeFormat('ar-u-ca-islamic-'+c+'-nu-latn',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'})),
+pc=x=>conj(x-n360(elf(x))/12.19),
+d1=c=>{const k=c.toFixed(3)+'|'+st.lat+'|'+st.lon+'|'+st.tz;if(dc[k])return dc[k];const N=Math.floor(c+.5+st.tz/24),j0=N-.5-st.tz/24,e=ev(sun,j0),m=ev(moon,j0);return dc[k]=N+(e.set&&c<e.set&&m.set>e.set?1:2)},
+hij=(j,se,m)=>{m=m||st.hm;const k=(st.hs&&se.set&&j>se.set?1:0)+st.ho;try{if(m!='obs')return hf(m).format(dt(j+k));
+let N=Math.floor(j+.5+st.tz/24)+k,c=pc(j),a=d1(c);if(a>N){c=pc(c-1);a=d1(c)}
+const p=hf('civil').formatToParts(new Date((a+14-2440587.5)*864e5)),g=t=>p.find(x=>x.type==t).value;return(N-a+1)+' '+g('month')+' '+g('year')+' هـ'}catch(e){return'—'}};
+/* واجهة */
+const row=(l,v,r,c)=>`<div class="r ${c||''}"><b>${E(l)}</b><span${r?' class=rt':''}>${E(v)}</span></div>`,
+w=(t,b)=>`<div class=w><h3>${t}</h3>${b}</div>`,
+Z=['الحمل','الثور','الجوزاء','السرطان','الأسد','العذراء','الميزان','العقرب','القوس','الجدي','الدلو','الحوت'],
+PH=['المحاق (الاقتران)','هلال متزايد','التربيع الأول','أحدب متزايد','البدر','أحدب متناقص','التربيع الأخير','هلال متناقص'],
+zd=l=>{const i=Math.floor(l/30);return Z[i]+' '+N(dms(l-30*i))},
+msvg=(k,wx)=>{const x=Math.abs(1-2*k)*44,rt=wx===(st.lat>=0);return`<svg viewBox="0 0 100 100" width=96 height=96><circle cx=50 cy=50 r=44 fill=#131c40 stroke=#e3b25b88 /><path d="M50 6A44 44 0 0 ${rt?1:0} 50 94A${x} 44 0 0 ${rt===(k<.5)?0:1} 50 6Z" fill=#f4e7c3 /></svg>`},
+jdNow=()=>{if(st.now||!st.d)return Date.now()/864e5+2440587.5;const[y,m,d]=st.d.split('-').map(Number);return JD(y,m,d,st.hh+st.mm/60+st.ss/3600)-st.tz/24},
+ecl=(b,x)=>w('🌐 الإحداثيات البروجية',row('الطول البروجي λ',dms(b.lon))+row('العرض البروجي β',dms(b.lat,1))+row('البرج',zd(b.lon),1)+x),
+equ=(b,h)=>w('🧭 الإحداثيات الاستوائية',row('المطلع المستقيم α',hms(b.ra/15))+row('المطلع المستقيم α (درجات)',dms(b.ra))+row('الميل δ',dms(b.dec,1))+row('الزاوية الساعية H',hms(n360(h.H)/15))),
+hor=h=>w('📐 الإحداثيات الأفقية',row('الارتفاع الحقيقي h',dms(h.top,1))+row('الارتفاع الظاهري (مع الانكسار)',dms(h.top+rf(h.top),1))+row('البعد السمتي z',dms(90-h.top))+row('السمت A (من الشمال)',dms(h.az))),
+rst=e=>w('🌅 الشروق والزوال والغروب',row('الشروق',tm(e.rise,1))+row('الزوال',tm(e.tr,1))+row('الغروب',tm(e.set,1)));
+function render(){
+const j=jdNow(),L=dt(j),j0=JD(L.getUTCFullYear(),L.getUTCMonth()+1,L.getUTCDate(),0)-st.tz/24,
+su=sun(j),mo=moon(j),hs=hz(su,j),hm=hz(mo,j),se=ev(sun,j0),me=ev(moon,j0);
+$('#o0').innerHTML=`<div class=clk>${E(tm(j,1))}</div><div class=dy>${E(G.format(L))}</div><div class=hj>${E(hij(j,se))}</div>`;
+$('#hc').innerHTML=Object.keys(HM).map(k=>row(HM[k],hij(j,se,k),1,k==st.hm?'nx':'')).join('');
+/* الصلوات */
+const sa=x=>hz(sun(x),x).alt,ff=(f,u)=>{const r=roots(f,j0,j0+1,144).find(x=>x.up===u);return r&&r.t},
+fj=ff(x=>sa(x)+18,true),dh=se.tr,mg=se.set,
+ah=dh?dg(Math.atan(1/(1+Math.tan(Math.abs(st.lat-sun(dh).dec)*P)))):0,
+asr=dh?ff(x=>sa(x)-ah,false):0,is=mg&&mg+.0625,
+nx=Math.min(...[fj,dh,asr,mg,is].filter(x=>x>j)),pr=(l,x)=>row(l,tm(x),0,x===nx?'nx':'');
+$('#s1').innerHTML=w('🕌 أوقات الصلاة بنظام 24 ساعة',pr('الفجر (18° تحت الأفق)',fj)+row('الشروق',tm(se.rise))+pr('الظهر',dh)+pr('العصر (الجمهور)',asr)+pr('المغرب',mg)+pr('العشاء (المغرب + 90 د)',is));
+/* الشمس */
+const et=n180(su.L-.0057183-su.ra+su.dpsi*cs(su.eps))*4;
+$('#s2').innerHTML=ecl(su,row('المسافة (وحدة فلكية)',U(su.r.toFixed(6),'AU'))+row('المسافة (مليون كم)',U((su.km/1e6).toFixed(3),'')))+equ(su,hs)+hor(hs)+rst(se)+
+w('☀️ بيانات أخرى',row('طول النهار',se.rise&&se.set?dur(se.set-se.rise):'—')+row('نصف القطر الظاهري',dms(su.sd))+row('معادلة الزمن',U((et<0?'−':'+')+Math.abs(et).toFixed(2),'دقيقة'),1));
+/* القمر */
+const e3=n360(n180(mo.lon-su.lon)),psi=ac(cs(mo.lat)*cs(mo.lon-su.lon)),ip=dg(at(su.km*sn(psi),mo.km-su.km*cs(psi))),k=(1+cs(ip))/2,
+phn=PH[Math.floor((e3+22.5)/45)%8],c1=conj(j-e3/12.19),c2=conj(j+(360-e3)/12.19),age=j-c1,
+lag=me.set&&se.set?(me.set-se.set)*1440:0,cf=x=>G.format(dt(x))+' الساعة '+N(tm(x,1));
+$('#s3').innerHTML=`<div class="w hero">${msvg(k,e3<180)}<div><div class=ph>${phn}</div>${E(N((k*100).toFixed(1)+'%')+' مضاءة')}</div></div>`+
+w('🌙 بيانات القمر الخاصة',row('الاستطالة (المطال)',dms(psi))+row('العمر',N(Math.floor(age))+' يوم '+N(dur(age%1)),1)+row('نسبة الإضاءة',(k*100).toFixed(2)+'%')+row('الطور',phn,1)+row('زاوية الطور',dms(ip))+row('المكث (فرق الغروب)',lag?U(lag.toFixed(1),'دقيقة'):'—',1)+row('اختلاف المنظر الأفقي',dms(mo.par))+row('نصف القطر الظاهري',dms(mo.sd)))+
+w('🌑 الاقتران (المحاق)',row('السابق',cf(c1),1)+row('القادم',cf(c2),1))+
+ecl(mo,row('المسافة (كم)',U(Math.round(mo.km),'')))+equ(mo,hm)+hor(hm)+rst(me);
+/* الوقت النجمي */
+const j00=Math.floor(j-.5)+.5,g0=gmst(j00),g1=gmst(j),nn=nut((j-2451545)/36525),q=nn.dpsi*cs(nn.eps),
+s2=g=>row('المتوسط',hms(g/15))+row('الظاهري',hms((g+q)/15));
+$('#s4').innerHTML=w('⭐ الوقت النجمي عند الساعة 0 (غرينتش)',row('بتاريخ UT',G.format(new Date((j00-2440587.5)*864e5)),1)+s2(g0))+w('🌍 الوقت النجمي العالمي (غرينتش)',s2(g1))+w('📍 الوقت النجمي المحلي',s2(g1+st.lon))+w('ℹ️ معادلة الاعتدالين',row('بالثواني',U((q*240).toFixed(3),'ثانية'),1))}
+/* التحكم */
+const msg=t=>$('#ms').textContent=t,lab=()=>$('#dgt').textContent=st.ar?'123':'١٢٣',
+sync=()=>['lat','lon','tz'].forEach(i=>$('#'+i).value=+st[i].toFixed(5));
+function upd(){const a=num($('#lat').value),o=num($('#lon').value),z=num($('#tz').value);
+if(Math.abs(a)<=90)st.lat=a;if(Math.abs(o)<=180)st.lon=o;if(z>=-12&&z<=14)st.tz=z;
+st.d=$('#dd').value||st.d;st.hh=cl(num($('#hh').value),23);st.mm=cl(num($('#mm').value),59);st.ss=cl(num($('#ss').value),59);save();render()}
+function setMode(a){st.auto=!!a;document.querySelectorAll('#gm button').forEach(b=>b.classList.toggle('on',+b.dataset.v==st.auto));
+['lat','lon','tz'].forEach(i=>$('#'+i).readOnly=st.auto);document.querySelectorAll('.pm').forEach(b=>b.disabled=st.auto);$('#ga').hidden=!st.auto;sync();save();render()}
+function geo(r){msg('جارٍ تحديد الموقع…');if(!navigator.geolocation){msg('المتصفح لا يدعم تحديد الموقع، أدخله يدويًا');setMode(0);return}
+try{navigator.geolocation.getCurrentPosition(p=>{st.lat=p.coords.latitude;st.lon=p.coords.longitude;st.tz=-new Date().getTimezoneOffset()/60;msg('تم تحديد الموقع تلقائيًا ✓');sync();save();render()},
+e=>{if(e.code!=1&&!r)return geo(1);msg(e.code==1?'الإذن مرفوض أو محجوب في هذا العرض — أدخل الموقع يدويًا (يعمل بعد تثبيت التطبيق مستقلًا)':'تعذّر التحديد، شغّل GPS ثم أعد المحاولة');setMode(0)},{enableHighAccuracy:!r,timeout:r?20000:10000,maximumAge:60000})}catch(e){msg('التحديد محجوب في هذا العرض — أدخله يدويًا');setMode(0)}}
+function fillManual(){const L=dt(Date.now()/864e5+2440587.5);$('#dd').value=L.toISOString().slice(0,10);$('#hh').value=L.getUTCHours();$('#mm').value=L.getUTCMinutes();$('#ss').value=L.getUTCSeconds();upd()}
+function setT(n){st.now=!!n;document.querySelectorAll('#tmd button').forEach(b=>b.classList.toggle('on',+b.dataset.v==st.now));$('#man').hidden=st.now;if(!st.now&&!st.d)fillManual();else render()}
+const nav=[...document.querySelectorAll('nav button')];
+nav.forEach((b,i)=>b.onclick=()=>{nav.forEach(x=>x.classList.remove('on'));document.querySelectorAll('section').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('#s'+i).classList.add('on');scrollTo(0,0)});
+$('#dgt').onclick=()=>{st.ar=!st.ar;lab();save();render()};
+$('#gm').onclick=e=>{const v=e.target.dataset.v;if(v!=null){setMode(+v);if(+v)geo()}};
+$('#tmd').onclick=e=>{const v=e.target.dataset.v;if(v!=null)setT(+v)};
+$('#ga').onclick=()=>geo();
+document.onclick=e=>{const s=e.target.dataset.s;if(s){const i=$('#'+s);i.value=/^[-−]/.test(i.value)?i.value.slice(1):'-'+i.value;upd()}};
+document.oninput=e=>{if('k' in e.target.dataset)upd()};
+$('#hm').innerHTML=Object.keys(HM).map(k=>`<button data-m=${k}>${HM[k]}</button>`).join('');
+const hui=()=>{document.querySelectorAll('#hm button').forEach(b=>b.classList.toggle('on',b.dataset.m==st.hm));document.querySelectorAll('#hs button').forEach(b=>b.classList.toggle('on',(b.dataset.v=='1')==st.hs));$('#ho').value=(st.ho>0?'+':'')+st.ho;save();render()};
+$('#hm').onclick=e=>{if(e.target.dataset.m){st.hm=e.target.dataset.m;hui()}};
+$('#hs').onclick=e=>{if(e.target.dataset.v!=null){st.hs=e.target.dataset.v=='1';hui()}};
+document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{st.ho=Math.max(-2,Math.min(2,st.ho+ +b.dataset.o));hui()});
+lab();setT(1);setMode(st.auto);hui();if(st.auto)geo();
+if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register('sw.js').catch(()=>{});
+setInterval(()=>{if(st.now)render()},1000);
+</script>
+</body>
+</html>
