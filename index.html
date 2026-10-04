@@ -191,6 +191,13 @@ const LI={fr:0,en:1,tr:2},L={};`
 معادلة الاعتدالين|Équation des équinoxes|Equation of the equinoxes|Ekinoks denklemi
 ℹ️ معادلة الاعتدالين|ℹ️ Équation des équinoxes|ℹ️ Equation of the equinoxes|ℹ️ Ekinoks denklemi
 بالثواني|En secondes|In seconds|Saniye cinsinden
+الظل|Ombre|Shadow|Gölge
+طول الظل (قامة 60 سم)|Longueur de l'ombre (gnomon de 60 cm)|Shadow length (60 cm gnomon)|Gölge uzunluğu (60 cm çubuk)
+سمت الظل (من الشمال)|Azimut de l'ombre (depuis le nord)|Shadow azimuth (from north)|Gölge azimutu (kuzeyden)
+لا ظل — غربت الشمس|Pas d'ombre : le soleil est couché|No shadow: the sun has set|Gölge yok: güneş battı
+لا ظل — لم تشرق الشمس بعد|Pas d'ombre : le soleil n'est pas encore levé|No shadow: the sun hasn't risen yet|Gölge yok: güneş henüz doğmadı
+سم|cm|cm|cm
+م|m|m|m
 جارٍ تحديد الموقع…|Localisation en cours…|Locating…|Konum alınıyor…
 تم تحديد الموقع تلقائيًا ✓|Position détectée ✓|Location detected ✓|Konum bulundu ✓
 تعذّر تحديد الموقع — فعّل GPS وإذن الموقع للتطبيق أو أدخله يدويًا|Localisation impossible : activez le GPS et l'autorisation, ou saisissez la position|Couldn't locate: enable GPS and location permission, or enter it manually|Konum alınamadı: GPS ve konum iznini açın veya elle girin
@@ -252,6 +259,7 @@ ecl=(b,x)=>w('🌐 الإحداثيات البروجية',row('الطول الب
 equ=(b,h)=>w('🧭 الإحداثيات الاستوائية',row('المطلع المستقيم α',hms(b.ra/15))+row('المطلع المستقيم α (درجات)',dms(b.ra))+row('الميل δ',dms(b.dec,1))+row('الزاوية الساعية H',hms(n360(h.H)/15))),
 hor=h=>w('📐 الإحداثيات الأفقية',row('الارتفاع الحقيقي h',dms(h.top,1))+row('الارتفاع الظاهري (مع الانكسار)',dms(h.top+rf(h.top),1))+row('البعد السمتي z',dms(90-h.top))+row('السمت A (من الشمال)',dms(h.az))),
 rst=e=>w('🌅 الشروق والزوال والغروب',row('الشروق',tm(e.rise,1))+row('الزوال',tm(e.tr,1))+row('الغروب',tm(e.set,1)));
+const GN=60,shd=h=>{const a=h.top+rf(h.top),L=GN/Math.tan(a*P);return w('📏 الظل',a>0?row('طول الظل (قامة 60 سم)',L<100?U(L.toFixed(1),'سم'):U((L/100).toFixed(2),'م'),1)+row('سمت الظل (من الشمال)',dms(n360(h.az+180))):`<div class=r style="justify-content:center;text-align:center;color:var(--m)">${tt(h.H>0?'لا ظل — غربت الشمس':'لا ظل — لم تشرق الشمس بعد')}</div>`)};
 function render(){
 const j=jdNow(),L=dt(j),j0=JD(L.getUTCFullYear(),L.getUTCMonth()+1,L.getUTCDate(),0)-st.tz/24,
 su=sun(j),mo=moon(j),hs=hz(su,j),hm=hz(mo,j),se=ev(sun,j0),me=ev(moon,j0);
@@ -268,7 +276,7 @@ nq=[fj,dh,asr,mg,is].map((x,i)=>[x,i]).filter(a=>a[0]>j)[0]||[f2,0];
 $('#s1').innerHTML=`<div class="w hero"><div><div style="color:var(--m);font-size:13px">${tt('الصلاة القادمة')}</div><div class=ph>${tt(['الفجر','الظهر','العصر','المغرب','العشاء'][nq[1]])}</div></div><div class=clk style="font-size:34px;padding:0;margin-inline-start:auto">${E(nq[0]>j?dur(nq[0]-j):'—')}</div></div>`+w('🕌 أوقات الصلوات الخمس',pr('الفجر (18° تحت الأفق)',fj)+row('الشروق',tm(se.rise))+pr('الظهر',dh)+pr('العصر (الجمهور)',asr)+pr('المغرب',mg)+pr('العشاء (المغرب + 90 د)',is));
 /* الشمس */
 const et=n180(su.L-.0057183-su.ra+su.dpsi*cs(su.eps))*4;
-$('#s2').innerHTML=ecl(su,row('المسافة (وحدة فلكية)',U(su.r.toFixed(6),'AU'))+row('المسافة (مليون كم)',U((su.km/1e6).toFixed(3),'')))+equ(su,hs)+hor(hs)+rst(se)+
+$('#s2').innerHTML=ecl(su,row('المسافة (وحدة فلكية)',U(su.r.toFixed(6),'AU'))+row('المسافة (مليون كم)',U((su.km/1e6).toFixed(3),'')))+equ(su,hs)+hor(hs)+shd(hs)+rst(se)+
 w('☀️ بيانات أخرى',row('طول النهار',se.rise&&se.set?dur(se.set-se.rise):'—')+row('نصف القطر الظاهري',dms(su.sd))+row('معادلة الزمن',U((et<0?'−':'+')+Math.abs(et).toFixed(2),'دقيقة'),1));
 /* القمر */
 const e3=n360(n180(mo.lon-su.lon)),psi=ac(cs(mo.lat)*cs(mo.lon-su.lon)),ip=dg(at(su.km*sn(psi),mo.km-su.km*cs(psi))),k=(1+cs(ip))/2,
