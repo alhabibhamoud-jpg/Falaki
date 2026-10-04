@@ -145,6 +145,7 @@ const LI={fr:0,en:1,tr:2},L={};`
 المسافة (مليون كم)|Distance (millions de km)|Distance (million km)|Uzaklık (milyon km)
 بيانات أخرى|Autres données|Other data|Diğer veriler
 طول النهار|Durée du jour|Day length|Gündüz süresi
+طول الليل|Durée de la nuit|Night length|Gece süresi
 نصف القطر الظاهري|Rayon apparent|Apparent radius|Görünür yarıçap
 معادلة الزمن|Équation du temps|Equation of time|Zaman denklemi
 مضاءة|éclairée|illuminated|aydınlık
@@ -277,7 +278,7 @@ $('#s1').innerHTML=`<div class="w hero"><div><div style="color:var(--m);font-siz
 /* الشمس */
 const et=n180(su.L-.0057183-su.ra+su.dpsi*cs(su.eps))*4;
 $('#s2').innerHTML=ecl(su,row('المسافة (وحدة فلكية)',U(su.r.toFixed(6),'AU'))+row('المسافة (مليون كم)',U((su.km/1e6).toFixed(3),'')))+equ(su,hs)+hor(hs)+shd(hs)+rst(se)+
-w('☀️ بيانات أخرى',row('طول النهار',se.rise&&se.set?dur(se.set-se.rise):'—')+row('نصف القطر الظاهري',dms(su.sd))+row('معادلة الزمن',U((et<0?'−':'+')+Math.abs(et).toFixed(2),'دقيقة'),1));
+w('☀️ بيانات أخرى',row('طول النهار',se.rise&&se.set?dur(se.set-se.rise):'—')+row('طول الليل',se.rise&&se.set?dur(1-(se.set-se.rise)):'—')+row('نصف القطر الظاهري',dms(su.sd))+row('معادلة الزمن',U((et<0?'−':'+')+Math.abs(et).toFixed(2),'دقيقة'),1));
 /* القمر */
 const e3=n360(n180(mo.lon-su.lon)),psi=ac(cs(mo.lat)*cs(mo.lon-su.lon)),ip=dg(at(su.km*sn(psi),mo.km-su.km*cs(psi))),k=(1+cs(ip))/2,
 phn=tt(PH[Math.floor((e3+22.5)/45)%8]),c1=conj(j-e3/12.19),c2=conj(j+(360-e3)/12.19),age=j-c1,
