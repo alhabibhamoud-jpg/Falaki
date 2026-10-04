@@ -26,7 +26,7 @@ section{display:none}section.on{display:block}
 .r{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:7px 14px;border-top:1px solid var(--b)}
 .r b{font-weight:400;color:var(--m);font-size:14px}
 .r span{direction:ltr;unicode-bidi:isolate;text-align:left;font-variant-numeric:tabular-nums}
-.r span.rt{direction:rtl}
+[dir=rtl] .r span.rt{direction:rtl}
 .nx{background:var(--h)}.nx b{color:var(--a);font-weight:700}
 nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--c);border-top:1px solid var(--b);padding-bottom:env(safe-area-inset-bottom,0px)}
 nav button{flex:1;border:0;background:none;color:var(--m);padding:7px 0;font-size:11px}
@@ -63,7 +63,7 @@ input[readonly]{opacity:.65}
 <div id="o0"></div></div>
 </section>
 <section id="s1"></section><section id="s2"></section><section id="s3"></section><section id="s4"></section>
-<section id="s5"><div class="w"><h3>📅 طريقة حساب التاريخ الهجري</h3><div id="hm"></div>
+<section id="s5"><div class="w"><h3>🌐 اللغة</h3><div class="sg" id="lg"><button data-l="ar">العربية</button><button data-l="fr">Français</button><button data-l="en">English</button><button data-l="tr">Türkçe</button></div></div><div class="w"><h3>📅 طريقة حساب التاريخ الهجري</h3><div id="hm"></div>
 <div class="f"><label>تعديل بالأيام</label><button data-o="-1">−</button><input id="ho" readonly><button data-o="1">+</button></div>
 <div class="f"><label>اليوم يبدأ عند الغروب</label><div class="sg" id="hs" style="flex:1;padding:0"><button data-v="0">لا</button><button data-v="1">نعم</button></div></div></div>
 <div class="w"><h3>🔎 تاريخ اليوم بكل الطرق</h3><div id="hc"></div></div></section>
@@ -75,18 +75,136 @@ n360=x=>(x%360+360)%360,n180=x=>{x=n360(x);return x>180?x-360:x},dg=x=>x/P,p2=n=
 ac=x=>dg(Math.acos(Math.max(-1,Math.min(1,x)))),
 num=s=>parseFloat(String(s).replace(/[٠-٩]/g,c=>c.charCodeAt(0)-1632).replace(/[٫,،]/g,'.').replace(/[−–]/g,'-')),
 cl=(x,m)=>Math.min(Math.max(x||0,0),m);
-let st={auto:true,lat:21.4225,lon:39.8262,tz:3,now:true,ar:false,d:'',hh:0,mm:0,ss:0,hm:'umalqura',ho:0,hs:false};
+let st={auto:true,lat:21.4225,lon:39.8262,tz:3,now:true,ar:false,d:'',hh:0,mm:0,ss:0,hm:'umalqura',ho:0,hs:false,lg:'ar'};
 try{Object.assign(st,JSON.parse(localStorage.getItem('astro')||'{}'))}catch(e){}
-const save=()=>{try{localStorage.setItem('astro',JSON.stringify({auto:st.auto,lat:st.lat,lon:st.lon,tz:st.tz,ar:st.ar,hm:st.hm,ho:st.ho,hs:st.hs}))}catch(e){}};
+const save=()=>{try{localStorage.setItem('astro',JSON.stringify({auto:st.auto,lat:st.lat,lon:st.lon,tz:st.tz,ar:st.ar,hm:st.hm,ho:st.ho,hs:st.hs,lg:st.lg}))}catch(e){}};
+const LI={fr:0,en:1,tr:2},L={};`
+الفلكي|L'Astronome|Astronomer|Astronom
+الشمس والقمر والصلاة والوقت النجمي|Soleil, Lune, prière, temps sidéral|Sun, Moon, prayer, sidereal time|Güneş, Ay, namaz, yıldız zamanı
+الموقع الجغرافي|Position géographique|Location|Konum
+تلقائي|Auto|Auto|Otomatik
+يدوي|Manuel|Manual|Elle
+خط العرض (+ شمال)|Latitude (+ nord)|Latitude (+ north)|Enlem (+ kuzey)
+خط الطول (+ شرق)|Longitude (+ est)|Longitude (+ east)|Boylam (+ doğu)
+المنطقة الزمنية UTC|Fuseau horaire UTC|Time zone UTC|Saat dilimi UTC
+تحديد الموقع|Me localiser|Locate me|Konumumu bul
+التاريخ والوقت|Date et heure|Date & time|Tarih ve saat
+الآن|Maintenant|Now|Şimdi
+وقت محدد|Heure précise|Custom time|Belirli zaman
+التاريخ الغريغوري|Date grégorienne|Gregorian date|Miladi tarih
+الوقت (24 ساعة)|Heure (24 h)|Time (24 h)|Saat (24 s)
+ساعة|h|h|sa
+دقيقة|min|min|dk
+ثانية|s|s|sn
+الموقع|Position|Location|Konum
+الصلوات|Prières|Prayers|Namaz
+الشمس|Soleil|Sun|Güneş
+القمر|Lune|Moon|Ay
+النجمي|Sidéral|Sidereal|Yıldız
+الإعدادات|Réglages|Settings|Ayarlar
+اللغة|Langue|Language|Dil
+طريقة حساب التاريخ الهجري|Calcul de la date hégirienne|Hijri date method|Hicri tarih yöntemi
+أم القرى (السعودية)|Oumm al-Qura (Arabie saoudite)|Umm al-Qura (Saudi Arabia)|Ümmülkura (Suudi Arabistan)
+مدني جدولي (أصل الجمعة)|Civil tabulaire (époque vendredi)|Tabular civil (Friday epoch)|Cetvelli sivil (Cuma başlangıcı)
+فلكي جدولي (أصل الخميس)|Astronomique tabulaire (époque jeudi)|Tabular astronomical (Thursday epoch)|Cetvelli astronomik (Perşembe başlangıcı)
+حساب الهلال: اقتران قبل الغروب + مكث القمر|Croissant : conjonction avant le coucher + durée de présence|Crescent: conjunction before sunset + moon lag|Hilal: batıştan önce kavuşum + Ay'ın kalışı
+تعديل بالأيام|Ajustement (jours)|Adjust (days)|Gün ayarı
+اليوم يبدأ عند الغروب|Le jour commence au coucher|Day starts at sunset|Gün batımında başlar
+لا|Non|No|Hayır
+نعم|Oui|Yes|Evet
+تاريخ اليوم بكل الطرق|Date du jour selon chaque méthode|Today by every method|Bugün, her yönteme göre
+الصلاة القادمة|Prochaine prière|Next prayer|Sıradaki namaz
+الفجر|Fajr|Fajr|İmsak
+الظهر|Dhouhr|Dhuhr|Öğle
+العصر|Asr|Asr|İkindi
+المغرب|Maghreb|Maghrib|Akşam
+العشاء|Icha|Isha|Yatsı
+أوقات الصلوات الخمس|Heures des cinq prières|Five daily prayer times|Beş vakit namaz saatleri
+الفجر (18° تحت الأفق)|Fajr (18° sous l'horizon)|Fajr (18° below horizon)|İmsak (ufkun 18° altı)
+الشروق|Lever|Rise|Doğuş
+العصر (الجمهور)|Asr (majorité)|Asr (majority)|İkindi (cumhur)
+العشاء (المغرب + 90 د)|Icha (Maghreb + 90 min)|Isha (Maghrib + 90 min)|Yatsı (Akşam + 90 dk)
+الإحداثيات البروجية|Coordonnées écliptiques|Ecliptic coordinates|Ekliptik koordinatlar
+الطول البروجي λ|Longitude écliptique λ|Ecliptic longitude λ|Ekliptik boylam λ
+العرض البروجي β|Latitude écliptique β|Ecliptic latitude β|Ekliptik enlem β
+البرج|Signe|Zodiac sign|Burç
+الإحداثيات الاستوائية|Coordonnées équatoriales|Equatorial coordinates|Ekvatoral koordinatlar
+المطلع المستقيم α|Ascension droite α|Right ascension α|Sağ açıklık α
+المطلع المستقيم α (درجات)|Ascension droite α (degrés)|Right ascension α (degrees)|Sağ açıklık α (derece)
+الميل δ|Déclinaison δ|Declination δ|Dik açıklık δ
+الزاوية الساعية H|Angle horaire H|Hour angle H|Saat açısı H
+الإحداثيات الأفقية|Coordonnées horizontales|Horizontal coordinates|Ufuk koordinatları
+الارتفاع الحقيقي h|Hauteur vraie h|True altitude h|Gerçek yükseklik h
+الارتفاع الظاهري (مع الانكسار)|Hauteur apparente (réfraction)|Apparent altitude (refraction)|Görünür yükseklik (kırılmalı)
+البعد السمتي z|Distance zénithale z|Zenith distance z|Zenit uzaklığı z
+السمت A (من الشمال)|Azimut A (depuis le nord)|Azimuth A (from north)|Azimut A (kuzeyden)
+الشروق والزوال والغروب|Lever, culmination, coucher|Rise, transit, set|Doğuş, öğle, batış
+الزوال|Culmination|Transit|Öğle
+الغروب|Coucher|Set|Batış
+المسافة (وحدة فلكية)|Distance (unité astronomique)|Distance (astronomical units)|Uzaklık (astronomik birim)
+المسافة (مليون كم)|Distance (millions de km)|Distance (million km)|Uzaklık (milyon km)
+بيانات أخرى|Autres données|Other data|Diğer veriler
+طول النهار|Durée du jour|Day length|Gündüz süresi
+نصف القطر الظاهري|Rayon apparent|Apparent radius|Görünür yarıçap
+معادلة الزمن|Équation du temps|Equation of time|Zaman denklemi
+مضاءة|éclairée|illuminated|aydınlık
+بيانات القمر الخاصة|Données propres à la Lune|Lunar data|Aya özgü veriler
+الاستطالة (المطال)|Élongation|Elongation|Elongasyon
+العمر|Âge|Age|Yaş
+يوم|j|d|g
+نسبة الإضاءة|Fraction éclairée|Illuminated fraction|Aydınlık oranı
+الطور|Phase|Phase|Evre
+زاوية الطور|Angle de phase|Phase angle|Evre açısı
+المكث (فرق الغروب)|Durée de présence (écart de coucher)|Moon lag (sunset gap)|Kalış süresi (batış farkı)
+اختلاف المنظر الأفقي|Parallaxe horizontale|Horizontal parallax|Ufuk paralaksı
+الاقتران (المحاق)|Conjonction (nouvelle lune)|Conjunction (new moon)|Kavuşum (yeni ay)
+السابق|Précédente|Previous|Önceki
+القادم|Prochaine|Next|Sonraki
+الساعة|à|at|saat
+المسافة (كم)|Distance (km)|Distance (km)|Uzaklık (km)
+المحاق (الاقتران)|Nouvelle lune (conjonction)|New moon (conjunction)|Yeni ay (kavuşum)
+هلال متزايد|Croissant ascendant|Waxing crescent|Büyüyen hilal
+التربيع الأول|Premier quartier|First quarter|İlk dördün
+أحدب متزايد|Gibbeuse croissante|Waxing gibbous|Şişkin ay (büyüyen)
+البدر|Pleine lune|Full moon|Dolunay
+أحدب متناقص|Gibbeuse décroissante|Waning gibbous|Şişkin ay (küçülen)
+التربيع الأخير|Dernier quartier|Last quarter|Son dördün
+هلال متناقص|Croissant descendant|Waning crescent|Küçülen hilal
+الحمل|Bélier|Aries|Koç
+الثور|Taureau|Taurus|Boğa
+الجوزاء|Gémeaux|Gemini|İkizler
+السرطان|Cancer|Cancer|Yengeç
+الأسد|Lion|Leo|Aslan
+العذراء|Vierge|Virgo|Başak
+الميزان|Balance|Libra|Terazi
+العقرب|Scorpion|Scorpio|Akrep
+القوس|Sagittaire|Sagittarius|Yay
+الجدي|Capricorne|Capricorn|Oğlak
+الدلو|Verseau|Aquarius|Kova
+الحوت|Poissons|Pisces|Balık
+الوقت النجمي عند الساعة 0 (غرينتش)|Temps sidéral à 0 h (Greenwich)|Sidereal time at 0 h (Greenwich)|Saat 0'da yıldız zamanı (Greenwich)
+بتاريخ UT|À la date UT|On UT date|UT tarihinde
+المتوسط|Moyen|Mean|Ortalama
+الظاهري|Apparent|Apparent|Görünür
+الوقت النجمي العالمي (غرينتش)|Temps sidéral universel (Greenwich)|Greenwich sidereal time|Greenwich yıldız zamanı
+الوقت النجمي المحلي|Temps sidéral local|Local sidereal time|Yerel yıldız zamanı
+معادلة الاعتدالين|Équation des équinoxes|Equation of the equinoxes|Ekinoks denklemi
+ℹ️ معادلة الاعتدالين|ℹ️ Équation des équinoxes|ℹ️ Equation of the equinoxes|ℹ️ Ekinoks denklemi
+بالثواني|En secondes|In seconds|Saniye cinsinden
+جارٍ تحديد الموقع…|Localisation en cours…|Locating…|Konum alınıyor…
+تم تحديد الموقع تلقائيًا ✓|Position détectée ✓|Location detected ✓|Konum bulundu ✓
+تعذّر تحديد الموقع — فعّل GPS وإذن الموقع للتطبيق أو أدخله يدويًا|Localisation impossible : activez le GPS et l'autorisation, ou saisissez la position|Couldn't locate: enable GPS and location permission, or enter it manually|Konum alınamadı: GPS ve konum iznini açın veya elle girin
+`.split('\n').forEach(l=>{const a=l.split('|');if(a[0])L[a[0]]=a.slice(1)});
+const tt=s=>{if(!s||st.lg=='ar')return s;const m=/^([^\p{L}]*)(.*)$/su.exec(s);return m[1]+((L[m[2]]||[])[LI[st.lg]]||m[2])};
 /* تنسيق */
-const E=s=>st.ar?String(s).replace(/\d+(\.\d+)?/g,m=>m.replace(/\d/g,c=>'٠١٢٣٤٥٦٧٨٩'[c]).replace('.','٫')+'\u200e'):s,
-N=s=>`<bdi dir=ltr>${s}</bdi>`,U=(n,u)=>N(n)+' '+u,
+const E=s=>st.ar&&st.lg=='ar'?String(s).replace(/\d+(\.\d+)?/g,m=>m.replace(/\d/g,c=>'٠١٢٣٤٥٦٧٨٩'[c]).replace('.','٫')+'\u200e'):s,
+N=s=>`<bdi dir=ltr>${s}</bdi>`,U=(n,u)=>N(n)+' '+tt(u),
 dms=(x,g)=>{const t=Math.round(Math.abs(x)*36000);return(x<0?'−':g?'+':'')+(t/36000|0)+'° '+p2(t%36000/600|0)+'′ '+(t%600/10).toFixed(1).padStart(4,'0')+'″'},
 hms=x=>{const t=Math.round((x%24+24)%24*36000)%864000;return p2(t/36000|0)+'ʰ '+p2(t%36000/600|0)+'ᵐ '+(t%600/10).toFixed(1).padStart(4,'0')+'ˢ'},
 tm=(j,s)=>{if(!(j>0))return'—';const u=s?1:60,t=Math.round((((j+.5+st.tz/24)%1)+1)%1*86400/u)*u%86400;return p2(t/3600|0)+':'+p2(t%3600/60|0)+(s?':'+p2(t%60):'')},
 dur=d=>{const s=Math.round(d*86400);return p2(s/3600|0)+':'+p2(s%3600/60|0)+':'+p2(s%60)},
 dt=j=>new Date((j-2440587.5+st.tz/24)*864e5);
-let G,Hj;try{G=new Intl.DateTimeFormat('ar-u-ca-gregory-nu-latn',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});Hj=new Intl.DateTimeFormat('ar-u-ca-islamic-umalqura-nu-latn',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'})}catch(e){G=Hj={format:()=>'—'}}
+let G;const mkG=()=>{try{G=new Intl.DateTimeFormat(st.lg+'-u-ca-gregory-nu-latn',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'})}catch(e){G={format:()=>'—'}}};mkG();
 /* الفلك */
 const JD=(y,m,d,h)=>{if(m<3){y--;m+=12}const A=Math.floor(y/100);return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+h/24+2-A+Math.floor(A/4)-1524.5},
 nut=T=>{const o=125.04452-1934.136261*T,l=280.4665+36000.7698*T;return{dpsi:-.004778*sn(o)-.000366*sn(2*l),eps:23.4392911-.0130042*T+.002556*cs(o)+.000158*cs(2*l)}},
@@ -116,18 +234,18 @@ tr=roots(j=>hz(f(j),j).H,j0,j0+1,144).filter(r=>r.up&&Math.abs(hz(f(r.t),r.t).H)
 return{rise:(rs.find(r=>r.up)||{}).t,set:(rs.find(r=>!r.up)||{}).t,tr:(tr[0]||{}).t}}
 const elf=j=>n180(moon(j).lon-sun(j).lon),conj=t=>{for(let i=0;i<9;i++)t-=elf(t)/12.19;return t};
 const HM={umalqura:'أم القرى (السعودية)',civil:'مدني جدولي (أصل الجمعة)',tbla:'فلكي جدولي (أصل الخميس)',obs:'حساب الهلال: اقتران قبل الغروب + مكث القمر'},HF={},dc={},
-hf=c=>HF[c]||(HF[c]=new Intl.DateTimeFormat('ar-u-ca-islamic-'+c+'-nu-latn',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'})),
+hf=c=>HF[c]||(HF[c]=new Intl.DateTimeFormat(st.lg+'-u-ca-islamic-'+c+'-nu-latn',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'})),
 pc=x=>conj(x-n360(elf(x))/12.19),
 d1=c=>{const k=c.toFixed(3)+'|'+st.lat+'|'+st.lon+'|'+st.tz;if(dc[k])return dc[k];const N=Math.floor(c+.5+st.tz/24),j0=N-.5-st.tz/24,e=ev(sun,j0),m=ev(moon,j0);return dc[k]=N+(e.set&&c<e.set&&m.set>e.set?1:2)},
 hij=(j,se,m)=>{m=m||st.hm;const k=(st.hs&&se.set&&j>se.set?1:0)+st.ho;try{if(m!='obs')return hf(m).format(dt(j+k));
 let N=Math.floor(j+.5+st.tz/24)+k,c=pc(j),a=d1(c);if(a>N){c=pc(c-1);a=d1(c)}
-const p=hf('civil').formatToParts(new Date((a+14-2440587.5)*864e5)),g=t=>p.find(x=>x.type==t).value;return(N-a+1)+' '+g('month')+' '+g('year')+' هـ'}catch(e){return'—'}};
+const p=hf('civil').formatToParts(new Date((a+14-2440587.5)*864e5)),g=t=>p.find(x=>x.type==t).value;return(N-a+1)+' '+g('month')+' '+g('year')+' '+({ar:'هـ',tr:'H'}[st.lg]||'AH')}catch(e){return'—'}};
 /* واجهة */
-const row=(l,v,r,c)=>`<div class="r ${c||''}"><b>${E(l)}</b><span${r?' class=rt':''}>${E(v)}</span></div>`,
-w=(t,b)=>`<div class=w><h3>${t}</h3>${b}</div>`,
+const row=(l,v,r,c)=>`<div class="r ${c||''}"><b>${E(tt(l))}</b><span${r?' class=rt':''}>${E(v)}</span></div>`,
+w=(t,b)=>`<div class=w><h3>${tt(t)}</h3>${b}</div>`,
 Z=['الحمل','الثور','الجوزاء','السرطان','الأسد','العذراء','الميزان','العقرب','القوس','الجدي','الدلو','الحوت'],
 PH=['المحاق (الاقتران)','هلال متزايد','التربيع الأول','أحدب متزايد','البدر','أحدب متناقص','التربيع الأخير','هلال متناقص'],
-zd=l=>{const i=Math.floor(l/30);return Z[i]+' '+N(dms(l-30*i))},
+zd=l=>{const i=Math.floor(l/30);return tt(Z[i])+' '+N(dms(l-30*i))},
 msvg=(k,wx)=>{const x=Math.abs(1-2*k)*44,rt=wx===(st.lat>=0);return`<svg viewBox="0 0 100 100" width=96 height=96><circle cx=50 cy=50 r=44 fill=#131c40 stroke=#e3b25b88 /><path d="M50 6A44 44 0 0 ${rt?1:0} 50 94A${x} 44 0 0 ${rt===(k<.5)?0:1} 50 6Z" fill=#f4e7c3 /></svg>`},
 jdNow=()=>{if(st.now||!st.d)return Date.now()/864e5+2440587.5;const[y,m,d]=st.d.split('-').map(Number);return JD(y,m,d,st.hh+st.mm/60+st.ss/3600)-st.tz/24},
 ecl=(b,x)=>w('🌐 الإحداثيات البروجية',row('الطول البروجي λ',dms(b.lon))+row('العرض البروجي β',dms(b.lat,1))+row('البرج',zd(b.lon),1)+x),
@@ -144,18 +262,20 @@ const sa=x=>hz(sun(x),x).alt,ff=(f,u)=>{const r=roots(f,j0,j0+1,144).find(x=>x.u
 fj=ff(x=>sa(x)+18,true),dh=se.tr,mg=se.set,
 ah=dh?dg(Math.atan(1/(1+Math.tan(Math.abs(st.lat-sun(dh).dec)*P)))):0,
 asr=dh?ff(x=>sa(x)-ah,false):0,is=mg&&mg+.0625,
-nx=Math.min(...[fj,dh,asr,mg,is].filter(x=>x>j)),pr=(l,x)=>row(l,tm(x),0,x===nx?'nx':'');
-$('#s1').innerHTML=w('🕌 أوقات الصلاة بنظام 24 ساعة',pr('الفجر (18° تحت الأفق)',fj)+row('الشروق',tm(se.rise))+pr('الظهر',dh)+pr('العصر (الجمهور)',asr)+pr('المغرب',mg)+pr('العشاء (المغرب + 90 د)',is));
+nx=Math.min(...[fj,dh,asr,mg,is].filter(x=>x>j)),pr=(l,x)=>row(l,tm(x),0,x===nx?'nx':''),
+f2=(roots(x=>sa(x)+18,j0+1,j0+2,144).find(r=>r.up)||{}).t,
+nq=[fj,dh,asr,mg,is].map((x,i)=>[x,i]).filter(a=>a[0]>j)[0]||[f2,0];
+$('#s1').innerHTML=`<div class="w hero"><div><div style="color:var(--m);font-size:13px">${tt('الصلاة القادمة')}</div><div class=ph>${tt(['الفجر','الظهر','العصر','المغرب','العشاء'][nq[1]])}</div></div><div class=clk style="font-size:34px;padding:0;margin-inline-start:auto">${E(nq[0]>j?dur(nq[0]-j):'—')}</div></div>`+w('🕌 أوقات الصلوات الخمس',pr('الفجر (18° تحت الأفق)',fj)+row('الشروق',tm(se.rise))+pr('الظهر',dh)+pr('العصر (الجمهور)',asr)+pr('المغرب',mg)+pr('العشاء (المغرب + 90 د)',is));
 /* الشمس */
 const et=n180(su.L-.0057183-su.ra+su.dpsi*cs(su.eps))*4;
 $('#s2').innerHTML=ecl(su,row('المسافة (وحدة فلكية)',U(su.r.toFixed(6),'AU'))+row('المسافة (مليون كم)',U((su.km/1e6).toFixed(3),'')))+equ(su,hs)+hor(hs)+rst(se)+
 w('☀️ بيانات أخرى',row('طول النهار',se.rise&&se.set?dur(se.set-se.rise):'—')+row('نصف القطر الظاهري',dms(su.sd))+row('معادلة الزمن',U((et<0?'−':'+')+Math.abs(et).toFixed(2),'دقيقة'),1));
 /* القمر */
 const e3=n360(n180(mo.lon-su.lon)),psi=ac(cs(mo.lat)*cs(mo.lon-su.lon)),ip=dg(at(su.km*sn(psi),mo.km-su.km*cs(psi))),k=(1+cs(ip))/2,
-phn=PH[Math.floor((e3+22.5)/45)%8],c1=conj(j-e3/12.19),c2=conj(j+(360-e3)/12.19),age=j-c1,
-lag=me.set&&se.set?(me.set-se.set)*1440:0,cf=x=>G.format(dt(x))+' الساعة '+N(tm(x,1));
-$('#s3').innerHTML=`<div class="w hero">${msvg(k,e3<180)}<div><div class=ph>${phn}</div>${E(N((k*100).toFixed(1)+'%')+' مضاءة')}</div></div>`+
-w('🌙 بيانات القمر الخاصة',row('الاستطالة (المطال)',dms(psi))+row('العمر',N(Math.floor(age))+' يوم '+N(dur(age%1)),1)+row('نسبة الإضاءة',(k*100).toFixed(2)+'%')+row('الطور',phn,1)+row('زاوية الطور',dms(ip))+row('المكث (فرق الغروب)',lag?U(lag.toFixed(1),'دقيقة'):'—',1)+row('اختلاف المنظر الأفقي',dms(mo.par))+row('نصف القطر الظاهري',dms(mo.sd)))+
+phn=tt(PH[Math.floor((e3+22.5)/45)%8]),c1=conj(j-e3/12.19),c2=conj(j+(360-e3)/12.19),age=j-c1,
+lag=me.set&&se.set?(me.set-se.set)*1440:0,cf=x=>G.format(dt(x))+' '+tt('الساعة')+' '+N(tm(x,1));
+$('#s3').innerHTML=`<div class="w hero">${msvg(k,e3<180)}<div><div class=ph>${phn}</div>${E(N((k*100).toFixed(1)+'%')+' '+tt('مضاءة'))}</div></div>`+
+w('🌙 بيانات القمر الخاصة',row('الاستطالة (المطال)',dms(psi))+row('العمر',N(Math.floor(age))+' '+tt('يوم')+' '+N(dur(age%1)),1)+row('نسبة الإضاءة',(k*100).toFixed(2)+'%')+row('الطور',phn,1)+row('زاوية الطور',dms(ip))+row('المكث (فرق الغروب)',lag?U(lag.toFixed(1),'دقيقة'):'—',1)+row('اختلاف المنظر الأفقي',dms(mo.par))+row('نصف القطر الظاهري',dms(mo.sd)))+
 w('🌑 الاقتران (المحاق)',row('السابق',cf(c1),1)+row('القادم',cf(c2),1))+
 ecl(mo,row('المسافة (كم)',U(Math.round(mo.km),'')))+equ(mo,hm)+hor(hm)+rst(me);
 /* الوقت النجمي */
@@ -163,16 +283,15 @@ const j00=Math.floor(j-.5)+.5,g0=gmst(j00),g1=gmst(j),nn=nut((j-2451545)/36525),
 s2=g=>row('المتوسط',hms(g/15))+row('الظاهري',hms((g+q)/15));
 $('#s4').innerHTML=w('⭐ الوقت النجمي عند الساعة 0 (غرينتش)',row('بتاريخ UT',G.format(new Date((j00-2440587.5)*864e5)),1)+s2(g0))+w('🌍 الوقت النجمي العالمي (غرينتش)',s2(g1))+w('📍 الوقت النجمي المحلي',s2(g1+st.lon))+w('ℹ️ معادلة الاعتدالين',row('بالثواني',U((q*240).toFixed(3),'ثانية'),1))}
 /* التحكم */
-const msg=t=>$('#ms').textContent=t,lab=()=>$('#dgt').textContent=st.ar?'123':'١٢٣',
+const msg=t=>$('#ms').textContent=tt(t),lab=()=>$('#dgt').textContent=st.ar?'123':'١٢٣',
 sync=()=>['lat','lon','tz'].forEach(i=>$('#'+i).value=+st[i].toFixed(5));
 function upd(){const a=num($('#lat').value),o=num($('#lon').value),z=num($('#tz').value);
 if(Math.abs(a)<=90)st.lat=a;if(Math.abs(o)<=180)st.lon=o;if(z>=-12&&z<=14)st.tz=z;
 st.d=$('#dd').value||st.d;st.hh=cl(num($('#hh').value),23);st.mm=cl(num($('#mm').value),59);st.ss=cl(num($('#ss').value),59);save();render()}
 function setMode(a){st.auto=!!a;document.querySelectorAll('#gm button').forEach(b=>b.classList.toggle('on',+b.dataset.v==st.auto));
 ['lat','lon','tz'].forEach(i=>$('#'+i).readOnly=st.auto);document.querySelectorAll('.pm').forEach(b=>b.disabled=st.auto);$('#ga').hidden=!st.auto;sync();save();render()}
-function geo(r){msg('جارٍ تحديد الموقع…');if(!navigator.geolocation){msg('المتصفح لا يدعم تحديد الموقع، أدخله يدويًا');setMode(0);return}
-try{navigator.geolocation.getCurrentPosition(p=>{st.lat=p.coords.latitude;st.lon=p.coords.longitude;st.tz=-new Date().getTimezoneOffset()/60;msg('تم تحديد الموقع تلقائيًا ✓');sync();save();render()},
-e=>{if(e.code!=1&&!r)return geo(1);msg(e.code==1?'الإذن مرفوض أو محجوب في هذا العرض — أدخل الموقع يدويًا (يعمل بعد تثبيت التطبيق مستقلًا)':'تعذّر التحديد، شغّل GPS ثم أعد المحاولة');setMode(0)},{enableHighAccuracy:!r,timeout:r?20000:10000,maximumAge:60000})}catch(e){msg('التحديد محجوب في هذا العرض — أدخله يدويًا');setMode(0)}}
+function geo(r){msg('جارٍ تحديد الموقع…');const f=()=>{msg('تعذّر تحديد الموقع — فعّل GPS وإذن الموقع للتطبيق أو أدخله يدويًا');setMode(0)};if(!navigator.geolocation)return f();
+try{navigator.geolocation.getCurrentPosition(p=>{st.lat=p.coords.latitude;st.lon=p.coords.longitude;st.tz=-new Date().getTimezoneOffset()/60;msg('تم تحديد الموقع تلقائيًا ✓');sync();save();render()},e=>{if(e.code!=1&&!r)return geo(1);f()},{enableHighAccuracy:!r,timeout:r?20000:10000,maximumAge:60000})}catch(e){f()}}
 function fillManual(){const L=dt(Date.now()/864e5+2440587.5);$('#dd').value=L.toISOString().slice(0,10);$('#hh').value=L.getUTCHours();$('#mm').value=L.getUTCMinutes();$('#ss').value=L.getUTCSeconds();upd()}
 function setT(n){st.now=!!n;document.querySelectorAll('#tmd button').forEach(b=>b.classList.toggle('on',+b.dataset.v==st.now));$('#man').hidden=st.now;if(!st.now&&!st.d)fillManual();else render()}
 const nav=[...document.querySelectorAll('nav button')];
@@ -183,12 +302,17 @@ $('#tmd').onclick=e=>{const v=e.target.dataset.v;if(v!=null)setT(+v)};
 $('#ga').onclick=()=>geo();
 document.onclick=e=>{const s=e.target.dataset.s;if(s){const i=$('#'+s);i.value=/^[-−]/.test(i.value)?i.value.slice(1):'-'+i.value;upd()}};
 document.oninput=e=>{if('k' in e.target.dataset)upd()};
-$('#hm').innerHTML=Object.keys(HM).map(k=>`<button data-m=${k}>${HM[k]}</button>`).join('');
 const hui=()=>{document.querySelectorAll('#hm button').forEach(b=>b.classList.toggle('on',b.dataset.m==st.hm));document.querySelectorAll('#hs button').forEach(b=>b.classList.toggle('on',(b.dataset.v=='1')==st.hs));$('#ho').value=(st.ho>0?'+':'')+st.ho;save();render()};
 $('#hm').onclick=e=>{if(e.target.dataset.m){st.hm=e.target.dataset.m;hui()}};
 $('#hs').onclick=e=>{if(e.target.dataset.v!=null){st.hs=e.target.dataset.v=='1';hui()}};
 document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{st.ho=Math.max(-2,Math.min(2,st.ho+ +b.dataset.o));hui()});
-lab();setT(1);setMode(st.auto);hui();if(st.auto)geo();
+function lng(){const d=document.documentElement;d.lang=st.lg;d.dir=st.lg=='ar'?'rtl':'ltr';mkG();Object.keys(HF).forEach(k=>delete HF[k]);
+const tw=document.createTreeWalker(document.body,4);let n;while(n=tw.nextNode()){if(n.parentNode.tagName=='SCRIPT'||!n.nodeValue.trim())continue;n._a=n._a||n.nodeValue;n.nodeValue=tt(n._a)}
+document.querySelectorAll('[placeholder]').forEach(e=>{e._p=e._p||e.placeholder;e.placeholder=tt(e._p)});
+document.querySelectorAll('#lg button').forEach(b=>b.classList.toggle('on',b.dataset.l==st.lg));$('#dgt').hidden=st.lg!='ar';
+$('#hm').innerHTML=Object.keys(HM).map(k=>`<button data-m=${k}>${tt(HM[k])}</button>`).join('');hui()}
+$('#lg').onclick=e=>{const l=e.target.dataset.l;if(l){st.lg=l;lng()}};
+lab();lng();setT(1);setMode(st.auto);if(st.auto)geo();
 if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register('sw.js').catch(()=>{});
 setInterval(()=>{if(st.now)render()},1000);
 </script>
