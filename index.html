@@ -29,7 +29,7 @@ section{display:none}section.on{display:block}
 [dir=rtl] .r span.rt{direction:rtl}
 .nx{background:var(--h)}.nx b{color:var(--a);font-weight:700}
 nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--c);border-top:1px solid var(--b);padding-bottom:env(safe-area-inset-bottom,0px)}
-nav button{flex:1;border:0;background:none;color:var(--m);padding:7px 0;font-size:11px}
+nav button{flex:1;border:0;background:none;color:var(--m);padding:7px 0;font-size:10px}
 nav button.on{color:var(--a);font-weight:700}
 nav i{display:block;font-size:20px;font-style:normal}
 .sg{display:flex;gap:6px;padding:10px 14px}
@@ -63,12 +63,12 @@ input[readonly]{opacity:.65}
 <div id="o0"></div></div>
 </section>
 <section id="s1"></section><section id="s2"></section><section id="s3"></section><section id="s4"></section>
-<section id="s5"><div class="w"><h3>🌐 اللغة</h3><div class="sg" id="lg"><button data-l="ar">العربية</button><button data-l="fr">Français</button><button data-l="en">English</button><button data-l="tr">Türkçe</button></div></div><div class="w"><h3>📅 طريقة حساب التاريخ الهجري</h3><div id="hm"></div>
+<section id="s5"></section><section id="s6"><div class="w"><h3>🌐 اللغة</h3><div class="sg" id="lg"><button data-l="ar">العربية</button><button data-l="fr">Français</button><button data-l="en">English</button><button data-l="tr">Türkçe</button></div></div><div class="w"><h3>📅 طريقة حساب التاريخ الهجري</h3><div id="hm"></div>
 <div class="f"><label>تعديل بالأيام</label><button data-o="-1">−</button><input id="ho" readonly><button data-o="1">+</button></div>
 <div class="f"><label>اليوم يبدأ عند الغروب</label><div class="sg" id="hs" style="flex:1;padding:0"><button data-v="0">لا</button><button data-v="1">نعم</button></div></div></div>
 <div class="w"><h3>🔎 تاريخ اليوم بكل الطرق</h3><div id="hc"></div></div></section>
 </main>
-<nav><button class="on"><i>📍</i>الموقع</button><button><i>🕌</i>الصلوات</button><button><i>☀️</i>الشمس</button><button><i>🌙</i>القمر</button><button><i>✨</i>النجمي</button><button><i>⚙️</i>الإعدادات</button></nav>
+<nav><button class="on"><i>📍</i>الموقع</button><button><i>🕌</i>الصلوات</button><button><i>☀️</i>الشمس</button><button><i>🌙</i>القمر</button><button><i>✨</i>النجمي</button><button><i>🕋</i>القبلة</button><button><i>⚙️</i>الإعدادات</button></nav>
 <script>
 const $=q=>document.querySelector(q),P=Math.PI/180,sn=x=>Math.sin(x*P),cs=x=>Math.cos(x*P),as=Math.asin,at=Math.atan2,
 n360=x=>(x%360+360)%360,n180=x=>{x=n360(x);return x>180?x-360:x},dg=x=>x/P,p2=n=>String(n).padStart(2,'0'),DT=69/86400,
@@ -144,8 +144,8 @@ const LI={fr:0,en:1,tr:2},L={};`
 المسافة (وحدة فلكية)|Distance (unité astronomique)|Distance (astronomical units)|Uzaklık (astronomik birim)
 المسافة (مليون كم)|Distance (millions de km)|Distance (million km)|Uzaklık (milyon km)
 بيانات أخرى|Autres données|Other data|Diğer veriler
-طول النهار|Durée du jour|Day length|Gündüz süresi
-طول الليل|Durée de la nuit|Night length|Gece süresi
+مدة النهار|Durée du jour|Day length|Gündüz süresi
+مدة الليل|Durée de la nuit|Night length|Gece süresi
 نصف القطر الظاهري|Rayon apparent|Apparent radius|Görünür yarıçap
 معادلة الزمن|Équation du temps|Equation of time|Zaman denklemi
 مضاءة|éclairée|illuminated|aydınlık
@@ -199,6 +199,50 @@ const LI={fr:0,en:1,tr:2},L={};`
 لا ظل — لم تشرق الشمس بعد|Pas d'ombre : le soleil n'est pas encore levé|No shadow: the sun hasn't risen yet|Gölge yok: güneş henüz doğmadı
 سم|cm|cm|cm
 م|m|m|m
+القبلة|Qibla|Qibla|Kıble
+اتجاه القبلة|Direction de la qibla|Qibla direction|Kıble yönü
+كيف تتجه إلى القبلة الآن|S'orienter vers la qibla maintenant|Facing the qibla now|Şimdi kıbleye yönelmek
+استقبال الشمس للقبلة|Soleil dans la direction de la qibla|Sun in the qibla direction|Güneş kıble yönünde
+استقبال الظل للقبلة|Ombre dans la direction de la qibla|Shadow in the qibla direction|Gölge kıble yönünde
+تعامد الشمس على الكعبة|Soleil au zénith de la Kaaba|Sun at zenith over the Kaaba|Güneş Kâbe'nin tam tepesinde
+سمت القبلة (من الشمال)|Azimut de la qibla (depuis le nord)|Qibla azimuth (from north)|Kıble azimutu (kuzeyden)
+الجهة|Direction|Direction|Yön
+شمال|Nord|North|Kuzey
+شمال شرق|Nord-est|Northeast|Kuzeydoğu
+شرق|Est|East|Doğu
+جنوب شرق|Sud-est|Southeast|Güneydoğu
+جنوب|Sud|South|Güney
+جنوب غرب|Sud-ouest|Southwest|Güneybatı
+غرب|Ouest|West|Batı
+شمال غرب|Nord-ouest|Northwest|Kuzeybatı
+المسافة إلى الكعبة|Distance jusqu'à la Kaaba|Distance to the Kaaba|Kâbe'ye uzaklık
+كم|km|km|km
+أنت عند الكعبة|Vous êtes à la Kaaba|You are at the Kaaba|Kâbe'desiniz
+سمت الشمس الآن|Azimut du soleil maintenant|Sun azimuth now|Güneşin şimdiki azimutu
+ارتفاع الشمس الآن|Hauteur du soleil maintenant|Sun altitude now|Güneşin şimdiki yüksekliği
+قف مواجهًا الشمس ثم انعطف|Face au soleil, puis tournez de|Face the sun, then turn|Güneşe dönün, sonra şu kadar dönün
+قف وظلّك أمامك ثم انعطف|Ombre devant vous, puis tournez de|Shadow in front of you, then turn|Gölgeniz önünüzde, sonra şu kadar dönün
+يمينًا|à droite|to the right|sağa
+يسارًا|à gauche|to the left|sola
+الشمس تحت الأفق: لا يمكن الاستدلال بالشمس أو الظل، فاستعمل بوصلة على سمت القبلة|Soleil sous l'horizon : impossible de s'orienter avec le soleil ou l'ombre, utilisez une boussole sur l'azimut de la qibla|Sun below the horizon: the sun and shadow can't be used, use a compass at the qibla azimuth|Güneş ufkun altında: güneş ve gölge kullanılamaz, kıble azimutunda pusula kullanın
+وقت الاستقبال|Heure de l'alignement|Alignment time|Hizalanma zamanı
+سمت الشمس (من الشمال)|Azimut du soleil (depuis le nord)|Sun azimuth (from north)|Güneş azimutu (kuzeyden)
+ارتفاع الشمس الظاهري|Hauteur apparente du soleil|Apparent sun altitude|Güneşin görünür yüksekliği
+لا استقبال اليوم|Pas d'alignement aujourd'hui|No alignment today|Bugün hizalanma yok
+يحدث الاستقبال في الليل (الشمس تحت الأفق)|L'alignement a lieu de nuit (soleil sous l'horizon)|The alignment happens at night (sun below the horizon)|Hizalanma geceleyin olur (güneş ufkun altında)
+عند هذا الوقت قف مواجهًا الشمس فتكون القبلة أمامك وظلك خلفك|À ce moment, faites face au soleil : la qibla est devant vous et votre ombre derrière vous|At that moment, face the sun: the qibla is ahead of you and your shadow behind you|O anda güneşe dönün: kıble önünüzde, gölgeniz arkanızda
+عند هذا الوقت قف وظلّك أمامك فتكون القبلة أمامك، أو انصب عودًا عموديًا فيشير ظله إلى القبلة|À ce moment, placez-vous avec l'ombre devant vous : la qibla est devant vous, ou plantez un bâton vertical dont l'ombre indique la qibla|At that moment, stand with your shadow in front of you: the qibla is ahead, or plant a vertical stick whose shadow points to the qibla|O anda gölgeniz önünüzdeyken durun: kıble önünüzdedir, veya dik bir çubuk dikin, gölgesi kıbleyi gösterir
+التاريخ والوقت عندك|Date et heure chez vous|Date and time at your location|Konumunuzdaki tarih ve saat
+بتوقيت مكة (UTC+3)|Heure de La Mecque (UTC+3)|Mecca time (UTC+3)|Mekke saati (UTC+3)
+ارتفاع الشمس عندك|Hauteur du soleil chez vous|Sun altitude at your location|Konumunuzdaki güneş yüksekliği
+الشمس في جهة القبلة تمامًا: اتجه نحوها، وظل أي عمود يشير عكس القبلة|Le soleil est exactement dans la direction de la qibla : faites-lui face, l'ombre de tout poteau pointe à l'opposé|The sun is exactly in the qibla direction: face it, the shadow of any pole points the opposite way|Güneş tam kıble yönünde: ona dönün, her direğin gölgesi ters yönü gösterir
+الوقت ليل عندك: لا يمكن الاستفادة منه|Il fait nuit chez vous : inutilisable|It is night at your location: not usable|Konumunuzda gece: kullanılamaz
+لا تعامد|Aucun passage au zénith|No zenith passage|Tepe geçişi yok
+منزلة الشمس|Mansion lunaire du soleil|Sun's lunar mansion|Güneşin menzili
+درجة الشمس في منزلتها|Degré du soleil dans sa mansion|Sun's degree in its mansion|Güneşin menzildeki derecesi
+منزلة القمر|Mansion lunaire de la Lune|Moon's lunar mansion|Ayın menzili
+درجة القمر في منزلته|Degré de la Lune dans sa mansion|Moon's degree in its mansion|Ayın menzildeki derecesi
+المنازل 28 متساوية (12° 51′ 26″) تبدأ من أول الحمل على فلك البروج|28 mansions égales (12° 51′ 26″) à partir du début du Bélier sur l'écliptique|28 equal mansions (12° 51′ 26″) starting at the beginning of Aries on the ecliptic|28 eşit menzil (12° 51′ 26″), ekliptikte Koç'un başından başlar
 جارٍ تحديد الموقع…|Localisation en cours…|Locating…|Konum alınıyor…
 تم تحديد الموقع تلقائيًا ✓|Position détectée ✓|Location detected ✓|Konum bulundu ✓
 تعذّر تحديد الموقع — فعّل GPS وإذن الموقع للتطبيق أو أدخله يدويًا|Localisation impossible : activez le GPS et l'autorisation, ou saisissez la position|Couldn't locate: enable GPS and location permission, or enter it manually|Konum alınamadı: GPS ve konum iznini açın veya elle girin
@@ -261,6 +305,33 @@ equ=(b,h)=>w('🧭 الإحداثيات الاستوائية',row('المطلع 
 hor=h=>w('📐 الإحداثيات الأفقية',row('الارتفاع الحقيقي h',dms(h.top,1))+row('الارتفاع الظاهري (مع الانكسار)',dms(h.top+rf(h.top),1))+row('البعد السمتي z',dms(90-h.top))+row('السمت A (من الشمال)',dms(h.az))),
 rst=e=>w('🌅 الشروق والزوال والغروب',row('الشروق',tm(e.rise,1))+row('الزوال',tm(e.tr,1))+row('الغروب',tm(e.set,1)));
 const GN=60,shd=h=>{const a=h.top+rf(h.top),L=GN/Math.tan(a*P);return w('📏 الظل',a>0?row('طول الظل (قامة 60 سم)',L<100?U(L.toFixed(1),'سم'):U((L/100).toFixed(2),'م'),1)+row('سمت الظل (من الشمال)',dms(n360(h.az+180))):`<div class=r style="justify-content:center;text-align:center;color:var(--m)">${tt(h.H>0?'لا ظل — غربت الشمس':'لا ظل — لم تشرق الشمس بعد')}</div>`)};
+const KA={lat:21.422487,lon:39.826206},
+MA=['الشرطان','البطين','الثريا','الدبران','الهقعة','الهنعة','الذراع','النثرة','الطرف','الجبهة','الزبرة','الصرفة','العواء','السماك','الغفر','الزبانى','الإكليل','القلب','الشولة','النعائم','البلدة','سعد الذابح','سعد بلع','سعد السعود','سعد الأخبية','الفرغ المقدم','الفرغ المؤخر','بطن الحوت'],
+ML="Al-Sharatan|Al-Butayn|Ath-Thurayya|Ad-Dabaran|Al-Haq'ah|Al-Han'ah|Adh-Dhira'|An-Nathrah|At-Tarf|Al-Jabhah|Az-Zubrah|As-Sarfah|Al-'Awwa|As-Simak|Al-Ghafr|Az-Zubana|Al-Iklil|Al-Qalb|Ash-Shawlah|An-Na'a'im|Al-Baldah|Sa'd adh-Dhabih|Sa'd Bula'|Sa'd as-Su'ud|Sa'd al-Akhbiyah|Al-Fargh al-Muqaddam|Al-Fargh al-Mu'akhkhar|Batn al-Hut".split('|'),
+mn=l=>{const w=360/28,i=Math.floor(l/w);return[(st.lg=='ar'?MA[i]:ML[i])+' ('+(i+1)+')',l-i*w]},
+nt=t=>`<div class=r style="color:var(--m);font-size:12px">${tt(t)}</div>`,
+cnt=t=>`<div class=r style="justify-content:center;text-align:center;color:var(--m)">${tt(t)}</div>`,
+mnr=(l,s)=>{const[n,d]=mn(l);return row(s?'منزلة الشمس':'منزلة القمر',n,1)+row(s?'درجة الشمس في منزلتها':'درجة القمر في منزلته',dms(d))+nt('المنازل 28 متساوية (12° 51′ 26″) تبدأ من أول الحمل على فلك البروج')},
+wn=['شمال','شمال شرق','شرق','جنوب شرق','جنوب','جنوب غرب','غرب','شمال غرب'],
+lenS=a=>{const L=GN/Math.tan(a*P);return L<100?U(L.toFixed(1),'سم'):U((L/100).toFixed(2),'م')},
+tmk=x=>{const t=Math.round((((x+.625)%1)+1)%1*86400)%86400;return p2(t/3600|0)+':'+p2(t%3600/60|0)+':'+p2(t%60)},
+aec={},zc={};
+function zen(j){const k=Math.floor(j);if(zc[k])return zc[k];
+const Hk=x=>{const n=nut((x-2451545)/36525);return n180(gmst(x)+n.dpsi*cs(n.eps)+KA.lon-sun(x).ra)};
+return zc[k]=roots(x=>sun(x).dec-KA.lat,j-1,j+370,371).map(r=>{let b;for(let i=-1;i<=1;i++){const z=roots(Hk,r.t+i-.5,r.t+i+.5,48).filter(q=>q.up&&Math.abs(Hk(q.t))<1)[0];if(z){const e=Math.abs(sun(z.t).dec-KA.lat);if(!b||e<b.e)b={t:z.t,e}}}return b&&b.t}).filter(t=>t>j).slice(0,2)}
+function qib(j,j0,hs,cf){
+const d=KA.lon-st.lon,la=st.lat,Q=n360(dg(at(sn(d),cs(la)*Math.tan(KA.lat*P)-sn(la)*cs(d)))),
+dist=ac(sn(la)*sn(KA.lat)+cs(la)*cs(KA.lat)*cs(d))*P*6371.0088;
+if(dist<.1)return w('🕋 اتجاه القبلة',cnt('أنت عند الكعبة'));
+const a=hs.top+rf(hs.top),tn=x=>{const D=n180(x);return dms(Math.abs(D))+' '+tt(D>=0?'يمينًا':'يسارًا')},
+ae=o=>{const key=Math.floor(j0)+'|'+st.lat+'|'+st.lon+'|'+st.tz+'|'+o,g=x=>n180(hz(sun(x),x).az-o);return aec[key]||(aec[key]=roots(g,j0,j0+1,288).filter(r=>Math.abs(g(r.t))<1).map(r=>{const h=hz(sun(r.t),r.t);return{t:r.t,az:h.az,a:h.top+rf(h.top)}}))},
+bl=(o,n)=>{const v=ae(o);return v.length?v.map(e=>row('وقت الاستقبال',tm(e.t,1))+(e.a>0?row('سمت الشمس (من الشمال)',dms(e.az))+row('ارتفاع الشمس الظاهري',dms(e.a,1))+row('سمت الظل (من الشمال)',dms(n360(e.az+180)))+row('طول الظل (قامة 60 سم)',lenS(e.a),1)+nt(n):cnt('يحدث الاستقبال في الليل (الشمس تحت الأفق)'))).join(''):cnt('لا استقبال اليوم')},
+zr=zen(j);
+return w('🕋 اتجاه القبلة',row('سمت القبلة (من الشمال)',dms(Q))+row('الجهة',tt(wn[Math.round(Q/45)%8]),1)+row('المسافة إلى الكعبة',U(Math.round(dist),'كم'),1))+
+w('🧍 كيف تتجه إلى القبلة الآن',a>0?row('سمت الشمس الآن',dms(hs.az))+row('ارتفاع الشمس الآن',dms(a,1))+row('قف مواجهًا الشمس ثم انعطف',tn(Q-hs.az),1)+row('قف وظلّك أمامك ثم انعطف',tn(Q-hs.az-180),1):cnt('الشمس تحت الأفق: لا يمكن الاستدلال بالشمس أو الظل، فاستعمل بوصلة على سمت القبلة'))+
+w('☀️ استقبال الشمس للقبلة',bl(Q,'عند هذا الوقت قف مواجهًا الشمس فتكون القبلة أمامك وظلك خلفك'))+
+w('📏 استقبال الظل للقبلة',bl(n360(Q+180),'عند هذا الوقت قف وظلّك أمامك فتكون القبلة أمامك، أو انصب عودًا عموديًا فيشير ظله إلى القبلة'))+
+w('🌞 تعامد الشمس على الكعبة',zr.length?zr.map(t=>{const h=hz(sun(t),t),b=h.top+rf(h.top);return row('التاريخ والوقت عندك',cf(t),1)+row('بتوقيت مكة (UTC+3)',tmk(t))+(b>0?row('ارتفاع الشمس عندك',dms(b,1))+row('سمت الشمس (من الشمال)',dms(h.az))+nt('الشمس في جهة القبلة تمامًا: اتجه نحوها، وظل أي عمود يشير عكس القبلة'):cnt('الوقت ليل عندك: لا يمكن الاستفادة منه'))}).join(''):cnt('لا تعامد'))}
 function render(){
 const j=jdNow(),L=dt(j),j0=JD(L.getUTCFullYear(),L.getUTCMonth()+1,L.getUTCDate(),0)-st.tz/24,
 su=sun(j),mo=moon(j),hs=hz(su,j),hm=hz(mo,j),se=ev(sun,j0),me=ev(moon,j0);
@@ -277,8 +348,8 @@ nq=[fj,dh,asr,mg,is].map((x,i)=>[x,i]).filter(a=>a[0]>j)[0]||[f2,0];
 $('#s1').innerHTML=`<div class="w hero"><div><div style="color:var(--m);font-size:13px">${tt('الصلاة القادمة')}</div><div class=ph>${tt(['الفجر','الظهر','العصر','المغرب','العشاء'][nq[1]])}</div></div><div class=clk style="font-size:34px;padding:0;margin-inline-start:auto">${E(nq[0]>j?dur(nq[0]-j):'—')}</div></div>`+w('🕌 أوقات الصلوات الخمس',pr('الفجر (18° تحت الأفق)',fj)+row('الشروق',tm(se.rise))+pr('الظهر',dh)+pr('العصر (الجمهور)',asr)+pr('المغرب',mg)+pr('العشاء (المغرب + 90 د)',is));
 /* الشمس */
 const et=n180(su.L-.0057183-su.ra+su.dpsi*cs(su.eps))*4;
-$('#s2').innerHTML=ecl(su,row('المسافة (وحدة فلكية)',U(su.r.toFixed(6),'AU'))+row('المسافة (مليون كم)',U((su.km/1e6).toFixed(3),'')))+equ(su,hs)+hor(hs)+shd(hs)+rst(se)+
-w('☀️ بيانات أخرى',row('طول النهار',se.rise&&se.set?dur(se.set-se.rise):'—')+row('طول الليل',se.rise&&se.set?dur(1-(se.set-se.rise)):'—')+row('نصف القطر الظاهري',dms(su.sd))+row('معادلة الزمن',U((et<0?'−':'+')+Math.abs(et).toFixed(2),'دقيقة'),1));
+$('#s2').innerHTML=ecl(su,row('المسافة (وحدة فلكية)',U(su.r.toFixed(6),'AU'))+row('المسافة (مليون كم)',U((su.km/1e6).toFixed(3),''))+mnr(su.lon,1))+equ(su,hs)+hor(hs)+shd(hs)+rst(se)+
+w('☀️ بيانات أخرى',row('مدة النهار',se.rise&&se.set?dur(se.set-se.rise):'—')+row('مدة الليل',se.rise&&se.set?dur(1-(se.set-se.rise)):'—')+row('نصف القطر الظاهري',dms(su.sd))+row('معادلة الزمن',U((et<0?'−':'+')+Math.abs(et).toFixed(2),'دقيقة'),1));
 /* القمر */
 const e3=n360(n180(mo.lon-su.lon)),psi=ac(cs(mo.lat)*cs(mo.lon-su.lon)),ip=dg(at(su.km*sn(psi),mo.km-su.km*cs(psi))),k=(1+cs(ip))/2,
 phn=tt(PH[Math.floor((e3+22.5)/45)%8]),c1=conj(j-e3/12.19),c2=conj(j+(360-e3)/12.19),age=j-c1,
@@ -286,7 +357,8 @@ lag=me.set&&se.set?(me.set-se.set)*1440:0,cf=x=>G.format(dt(x))+' '+tt('السا
 $('#s3').innerHTML=`<div class="w hero">${msvg(k,e3<180)}<div><div class=ph>${phn}</div>${E(N((k*100).toFixed(1)+'%')+' '+tt('مضاءة'))}</div></div>`+
 w('🌙 بيانات القمر الخاصة',row('الاستطالة (المطال)',dms(psi))+row('العمر',N(Math.floor(age))+' '+tt('يوم')+' '+N(dur(age%1)),1)+row('نسبة الإضاءة',(k*100).toFixed(2)+'%')+row('الطور',phn,1)+row('زاوية الطور',dms(ip))+row('المكث (فرق الغروب)',lag?U(lag.toFixed(1),'دقيقة'):'—',1)+row('اختلاف المنظر الأفقي',dms(mo.par))+row('نصف القطر الظاهري',dms(mo.sd)))+
 w('🌑 الاقتران (المحاق)',row('السابق',cf(c1),1)+row('القادم',cf(c2),1))+
-ecl(mo,row('المسافة (كم)',U(Math.round(mo.km),'')))+equ(mo,hm)+hor(hm)+rst(me);
+ecl(mo,row('المسافة (كم)',U(Math.round(mo.km),''))+mnr(mo.lon,0))+equ(mo,hm)+hor(hm)+rst(me);
+$('#s5').innerHTML=qib(j,j0,hs,cf);
 /* الوقت النجمي */
 const j00=Math.floor(j-.5)+.5,g0=gmst(j00),g1=gmst(j),nn=nut((j-2451545)/36525),q=nn.dpsi*cs(nn.eps),
 s2=g=>row('المتوسط',hms(g/15))+row('الظاهري',hms((g+q)/15));
