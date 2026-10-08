@@ -42,7 +42,7 @@ input[readonly]{opacity:.65}
 .clk{font-size:46px;font-weight:600;text-align:center;direction:ltr;color:var(--a);padding-top:12px;font-variant-numeric:tabular-nums}
 .dy,.hj{text-align:center}.hj{color:var(--m);padding-bottom:14px}
 .hero{display:flex;align-items:center;gap:16px;padding:14px}.hero .ph{font-size:20px;font-weight:600;color:var(--a)}
-#hm,#nfc{display:grid;gap:6px;padding:10px 14px}#hm button,#nfc button{border:1px solid var(--b);background:var(--bg);color:var(--t);border-radius:10px;padding:9px;text-align:start}#hm button.on,#nfc button.on{background:var(--a);color:var(--c);border-color:var(--a)}
+#sts{width:100%;padding:10px;border-radius:10px;border:1px solid var(--b);background:var(--bg);color:var(--t);font:inherit}#hm,#nfc{display:grid;gap:6px;padding:10px 14px}#hm button,#nfc button{border:1px solid var(--b);background:var(--bg);color:var(--t);border-radius:10px;padding:9px;text-align:start}#hm button.on,#nfc button.on{background:var(--a);color:var(--c);border-color:var(--a)}
 </style>
 </head>
 <body>
@@ -63,24 +63,24 @@ input[readonly]{opacity:.65}
 <div id="o0"></div></div>
 </section>
 <section id="s1"></section><section id="s2"></section><section id="s3"></section><section id="s4"></section>
-<section id="s5"></section><section id="s6"></section><section id="s7"><div class="w"><h3>🌐 اللغة</h3><div class="sg" id="lg"><button data-l="ar">العربية</button><button data-l="fr">Français</button><button data-l="en">English</button><button data-l="tr">Türkçe</button></div></div><div class="w"><h3>⏱️ دقائق التمكين للصلوات</h3><div id="tkb"></div><div class="f"><label>ارتفاع الشمس لبداية الضحى (°)</label><button data-z="-.5">−</button><input id="dzv" readonly><button data-z=".5">+</button></div><div class="r" style="color:var(--m);font-size:12px">دقائق تضاف إلى وقت كل صلاة احتياطًا (تمكينًا) ويمكن جعلها سالبة، ولا تؤثر في حساب الثلث الأخير من الليل</div></div>
-<div class="w"><h3>🔔 الإشعارات</h3><div class="sg" id="nfo"><button data-v="0">إيقاف</button><button data-v="1">تفعيل</button></div><div id="nfc"></div><div class="f"><label>التنبيه قبل الصلاة (دقيقة)</label><button data-n="-5">−</button><input id="nfl" readonly><button data-n="5">+</button></div><div class="f"><button id="nfx" style="flex:1;border:1px solid var(--b);background:var(--bg);color:var(--t);border-radius:10px;padding:9px">تصدير التنبيهات إلى تقويم الهاتف (الصلوات 30 يومًا والمناسبات سنة)</button></div><div class="r" style="color:var(--m);font-size:12px">تعمل الإشعارات أثناء فتح التطبيق فقط؛ للتنبيه والتطبيق مغلق صدّر الملف إلى تقويم الهاتف وافتحه ليضيف الأحداث مع منبهاتها</div><div class="r" id="nfm" style="color:var(--m);font-size:12px"></div></div>
+<section id="s5"><div id="s5d"></div><div class="w"><h3>⭐ اختر نجمًا</h3><div style="padding:10px 14px"><select id="sts"></select></div></div><div id="s5e"></div></section><section id="s6"></section><section id="s7"><div class="w"><h3>🌐 اللغة</h3><div class="sg" id="lg"><button data-l="ar">العربية</button><button data-l="fr">Français</button><button data-l="en">English</button><button data-l="tr">Türkçe</button></div></div><div class="w"><h3>⏱️ دقائق التمكين للصلوات</h3><div id="tkb"></div><div class="f"><label>ارتفاع الشمس لبداية الضحى (°)</label><button data-z="-.5">−</button><input id="dzv" readonly><button data-z=".5">+</button></div><div class="r" style="color:var(--m);font-size:12px">دقائق تضاف إلى وقت كل صلاة احتياطًا (تمكينًا) ويمكن جعلها سالبة، ولا تؤثر في حساب الثلث الأخير من الليل</div></div>
+<div class="w"><h3>🔔 الإشعارات</h3><div class="sg" id="nfo"><button data-v="0">إيقاف</button><button data-v="1">تفعيل</button></div><div id="nfc"></div><div class="r" style="color:var(--m);font-size:12px">قبل دخول الوقت بـ (0 = بلا إشعار مسبق)، مع إشعار آخر عند دخول الوقت دائمًا</div><div id="nfd"></div><div class="f"><button id="nfx" style="flex:1;border:1px solid var(--b);background:var(--bg);color:var(--t);border-radius:10px;padding:9px">تصدير التنبيهات إلى تقويم الهاتف (الصلوات 30 يومًا والمناسبات سنة)</button></div><div class="r" style="color:var(--m);font-size:12px">تعمل الإشعارات أثناء فتح التطبيق فقط؛ للتنبيه والتطبيق مغلق صدّر الملف إلى تقويم الهاتف وافتحه ليضيف الأحداث مع منبهاتها</div><div class="r" id="nfm" style="color:var(--m);font-size:12px"></div></div>
 <div class="w"><h3>📅 طريقة حساب التاريخ الهجري</h3><div id="hm"></div>
 <div class="f"><label>تعديل بالأيام</label><button data-o="-1">−</button><input id="ho" readonly><button data-o="1">+</button></div>
 <div class="f"><label>اليوم يبدأ عند الغروب</label><div class="sg" id="hs" style="flex:1;padding:0"><button data-v="0">لا</button><button data-v="1">نعم</button></div></div></div>
 <div class="w"><h3>🔎 تاريخ اليوم بكل الطرق</h3><div id="hc"></div></div></section>
 </main>
-<nav><button class="on"><i>📍</i>الموقع</button><button><i>🕌</i>الصلوات</button><button><i>☀️</i>الشمس</button><button><i>🌙</i>القمر</button><button><i>🌒</i>الهلال</button><button><i>✨</i>النجمي</button><button><i>🕋</i>القبلة</button><button><i>⚙️</i>الإعدادات</button></nav>
+<nav><button class="on"><i>📍</i>الموقع</button><button><i>🕌</i>الصلوات</button><button><i>☀️</i>الشمس</button><button><i>🌙</i>القمر</button><button><i>🌒</i>الهلال</button><button><i>✨</i>النجوم</button><button><i>🕋</i>القبلة</button><button><i>⚙️</i>الإعدادات</button></nav>
 <script>
 const $=q=>document.querySelector(q),P=Math.PI/180,sn=x=>Math.sin(x*P),cs=x=>Math.cos(x*P),as=Math.asin,at=Math.atan2,
 n360=x=>(x%360+360)%360,n180=x=>{x=n360(x);return x>180?x-360:x},dg=x=>x/P,p2=n=>String(n).padStart(2,'0'),DT=69/86400,
 ac=x=>dg(Math.acos(Math.max(-1,Math.min(1,x)))),
 num=s=>parseFloat(String(s).replace(/[٠-٩]/g,c=>c.charCodeAt(0)-1632).replace(/[٫,،]/g,'.').replace(/[−–]/g,'-')),
 cl=(x,m)=>Math.min(Math.max(x||0,0),m);
-let st={auto:true,lat:21.4225,lon:39.8262,tz:3,now:true,ar:false,d:'',hh:0,mm:0,ss:0,hm:'umalqura',ho:0,hs:false,lg:'ar',nf:{on:0,p:1,n:1,s:1,h:1,e:1,z:1},nl:0,tk:[0,0,0,0,0],dz:4};
+let st={auto:true,lat:21.4225,lon:39.8262,tz:3,now:true,ar:false,d:'',hh:0,mm:0,ss:0,hm:'umalqura',ho:0,hs:false,lg:'ar',nf:{on:0,p:1,n:1,s:1,h:1,e:1,z:1},nl:0,tk:[0,0,0,0,0],dz:4,sx:0,ld:{p:[10,'m'],n:[3,'h'],s:[30,'m'],h:[1,'d'],z:[1,'d'],e:[1,'h']}};
 try{Object.assign(st,JSON.parse(localStorage.getItem('astro')||'{}'))}catch(e){}
 if(st.nf.z==null)st.nf.z=1;
-const save=()=>{try{localStorage.setItem('astro',JSON.stringify({auto:st.auto,lat:st.lat,lon:st.lon,tz:st.tz,ar:st.ar,hm:st.hm,ho:st.ho,hs:st.hs,lg:st.lg,nf:st.nf,nl:st.nl,tk:st.tk,dz:st.dz}))}catch(e){}};
+const save=()=>{try{localStorage.setItem('astro',JSON.stringify({auto:st.auto,lat:st.lat,lon:st.lon,tz:st.tz,ar:st.ar,hm:st.hm,ho:st.ho,hs:st.hs,lg:st.lg,nf:st.nf,nl:st.nl,tk:st.tk,dz:st.dz,sx:st.sx,ld:st.ld}))}catch(e){}};
 const LI={fr:0,en:1,tr:2},L={};`
 الفلكي|L'Astronome|Astronomer|Astronom
 الشمس والقمر والصلاة والوقت النجمي|Soleil, Lune, prière, temps sidéral|Sun, Moon, prayer, sidereal time|Güneş, Ay, namaz, yıldız zamanı
@@ -202,6 +202,36 @@ const LI={fr:0,en:1,tr:2},L={};`
 لا ظل — لم تشرق الشمس بعد|Pas d'ombre : le soleil n'est pas encore levé|No shadow: the sun hasn't risen yet|Gölge yok: güneş henüz doğmadı
 سم|cm|cm|cm
 م|m|m|m
+ميلاد الهلال (الاقتران)|Naissance du croissant (conjonction)|New crescent birth (conjunction)|Hilalin doğuşu (kavuşum)
+بداية كسوف الشمس|Début de l'éclipse de Soleil|Solar eclipse begins|Güneş tutulması başlıyor
+بداية خسوف القمر|Début de l'éclipse de Lune|Lunar eclipse begins|Ay tutulması başlıyor
+قبل دخول الوقت بـ (0 = بلا إشعار مسبق)، مع إشعار آخر عند دخول الوقت دائمًا|Préavis avant l'heure (0 = aucun préavis) ; une seconde notification à l'heure elle-même est toujours envoyée|Advance notice before the time (0 = none); a second notification at the time itself is always sent|Vakitten önce uyarı (0 = uyarı yok); vakit girdiğinde ayrıca her zaman bildirim gönderilir
+النجوم|Étoiles|Stars|Yıldızlar
+اختر نجمًا|Choisir une étoile|Choose a star|Yıldız seçin
+الاسم|Nom|Name|Ad
+التسمية العلمية|Désignation|Designation|Bilimsel ad
+القدر الظاهري|Magnitude apparente|Apparent magnitude|Görünür parlaklık
+البعد|Distance|Distance|Uzaklık
+سنة ضوئية|a.l.|ly|ıy
+الطيف|Type spectral|Spectral type|Tayf türü
+منزلة من منازل القمر|Mansion lunaire|Lunar mansion|Ay menzili
+الحالة الآن|État actuel|Current state|Şu anki durum
+تحت الأفق|Sous l'horizon|Below the horizon|Ufkun altında
+فوق الأفق ويمكن رؤيته|Au-dessus de l'horizon, visible|Above the horizon, visible|Ufkun üstünde, görülebilir
+فوق الأفق لكن السماء مضيئة|Au-dessus de l'horizon mais ciel clair|Above the horizon but the sky is bright|Ufkun üstünde ama gökyüzü aydınlık
+مدة الظهور فوق الأفق|Durée au-dessus de l'horizon|Time above the horizon|Ufkun üstünde kalma süresi
+نجم دائم الظهور في موقعك|Étoile circumpolaire à votre position|Circumpolar star at your location|Konumunuzda dairesel (hep görünür) yıldız
+نجم لا يطلع في موقعك|Cette étoile ne se lève jamais chez vous|This star never rises at your location|Bu yıldız konumunuzda hiç doğmaz
+أسطع النجوم فوق الأفق الآن|Étoiles les plus brillantes au-dessus de l'horizon|Brightest stars above the horizon now|Şu an ufkun üstündeki en parlak yıldızlar
+الشمس فوق الأفق: النجوم غير مرئية الآن|Soleil levé : étoiles invisibles|Sun above the horizon: stars not visible|Güneş ufkun üstünde: yıldızlar görünmez
+القيمة: السمت / الارتفاع|Valeur : azimut / hauteur|Value: azimuth / altitude|Değer: azimut / yükseklik
+إحداثيات النجوم لعام 2000 مع تصحيح المبادرة؛ دقتها نحو دقيقتين قوسيتين|Coordonnées J2000 corrigées de la précession ; précision d'environ 2 minutes d'arc|J2000 coordinates corrected for precession; accuracy about 2 arcminutes|J2000 koordinatları, presesyon düzeltmeli; doğruluk yaklaşık 2 yay dakikası
+الاستدلال بالنجوم على القبلة|Se repérer avec les étoiles pour la qibla|Finding the qibla by stars|Yıldızlarla kıbleyi bulma
+الشمس فوق الأفق أو الشفق: النجوم غير ظاهرة الآن|Soleil levé ou crépuscule : étoiles invisibles|Sun up or twilight: stars not visible now|Güneş ufkun üstünde veya alacakaranlık: yıldızlar görünmez
+ارتفاع النجم القطبي (الشمال الحقيقي)|Hauteur de l'étoile Polaire (nord vrai)|Polaris altitude (true north)|Kutup yıldızı yüksekliği (gerçek kuzey)
+قف مواجهًا النجم القطبي ثم انعطف|Face à l'étoile Polaire, puis tournez de|Face Polaris, then turn|Kutup yıldızına dönün, sonra şu kadar dönün
+قف مواجهًا هذا النجم ثم انعطف|Face à cette étoile, puis tournez de|Face this star, then turn|Bu yıldıza dönün, sonra şu kadar dönün
+لا نجم لامع قرب سمت القبلة الآن|Aucune étoile brillante près de l'azimut de la qibla|No bright star near the qibla azimuth now|Şu an kıble azimutuna yakın parlak yıldız yok
 ارتفاع الشمس عند الزوال|Hauteur du soleil à midi solaire|Sun altitude at solar noon|Öğle vaktinde güneş yüksekliği
 ظل الزوال (قامة 60 سم)|Ombre à midi solaire (gnomon de 60 cm)|Noon shadow (60 cm gnomon)|Öğle gölgesi (60 cm çubuk)
 سمت ظل الزوال (من الشمال)|Azimut de l'ombre à midi (depuis le nord)|Noon shadow azimuth (from north)|Öğle gölgesinin azimutu (kuzeyden)
@@ -502,7 +532,7 @@ return w('🕋 اتجاه القبلة',row('سمت القبلة (من الشم�
 w('🧍 كيف تتجه إلى القبلة الآن',a>0?row('سمت الشمس الآن',dms(hs.az))+row('ارتفاع الشمس الآن',dms(a,1))+row('قف مواجهًا الشمس ثم انعطف',tn(Q-hs.az),1)+row('قف وظلّك أمامك ثم انعطف',tn(Q-hs.az-180),1):cnt('الشمس تحت الأفق: لا يمكن الاستدلال بالشمس أو الظل، فاستعمل بوصلة على سمت القبلة'))+
 w('☀️ استقبال الشمس للقبلة',bl(Q,'عند هذا الوقت قف مواجهًا الشمس فتكون القبلة أمامك وظلك خلفك'))+
 w('📏 استقبال الظل للقبلة',bl(n360(Q+180),'عند هذا الوقت قف وظلّك أمامك فتكون القبلة أمامك، أو انصب عودًا عموديًا فيشير ظله إلى القبلة'))+
-w('🌞 تعامد الشمس على الكعبة',zr.length?zr.map(t=>{const h=hz(sun(t),t),b=h.top+rf(h.top);return row('التاريخ والوقت عندك',cf(t),1)+row('بتوقيت مكة (UTC+3)',tmk(t))+(b>0?row('ارتفاع الشمس عندك',dms(b,1))+row('سمت الشمس (من الشمال)',dms(h.az))+nt('الشمس في جهة القبلة تمامًا: اتجه نحوها، وظل أي عمود يشير عكس القبلة'):cnt('الوقت ليل عندك: لا يمكن الاستفادة منه'))}).join(''):cnt('لا تعامد'))}
+w('🌞 تعامد الشمس على الكعبة',zr.length?zr.map(t=>{const h=hz(sun(t),t),b=h.top+rf(h.top);return row('التاريخ والوقت عندك',cf(t),1)+row('بتوقيت مكة (UTC+3)',tmk(t))+(b>0?row('ارتفاع الشمس عندك',dms(b,1))+row('سمت الشمس (من الشمال)',dms(h.az))+nt('الشمس في جهة القبلة تمامًا: اتجه نحوها، وظل أي عمود يشير عكس القبلة'):cnt('الوقت ليل عندك: لا يمكن الاستفادة منه'))}).join(''):cnt('لا تعامد'))+qst(j,Q,hs)}
 const YM=['يُرى بسهولة بالعين المجردة','يُرى بالعين المجردة في ظروف جوية مثالية','قد يحتاج معينًا بصريًا لإيجاده ثم يُرى بالعين المجردة','يحتاج معينًا بصريًا لإيجاده','لا يُرى حتى بالتلسكوب','لا يُرى: دون حد دانجون (تصنيف يالوب)'],
 OM=['الهلال مرئي بالعين المجردة','مرئي بالمنظار ويمكن رؤيته بالعين المجردة','مرئي بالمنظار فقط','لا يُرى حتى بالمنظار'],
 hd=t=>`<div class=r style="font-weight:700;color:var(--a)">${E(tt(t))}</div>`,
@@ -600,36 +630,139 @@ const jn=()=>Date.now()/864e5+2440587.5,NK=['الفجر','الظهر','العص�
 OC={'9-1':'غرة رمضان','10-1':'عيد الفطر','12-9':'يوم عرفة','12-10':'عيد الأضحى','1-1':'رأس السنة الهجرية','1-10':'عاشوراء'},
 NC={p:'الصلوات الخمس',n:'اقتراب ميلاد الهلال',s:'ليلة استطلاع الهلال',h:'الأعياد والمناسبات الهجرية',z:'تعامد الشمس على الكعبة',e:'الكسوف والخسوف'},
 ad=(t,i)=>t?t+st.tk[i]/1440:t,
+LD=c=>{const[n,u]=st.ld[c]||[0,'m'];return n*(u=='m'?1/1440:u=='h'?1/24:1)},
+ago=c=>{const[n,u]=st.ld[c]||[0,'m'],L=st.lg;if(L=='ar'){const F={m:['دقيقة','دقيقتين','دقائق','دقيقة'],h:['ساعة','ساعتين','ساعات','ساعة'],d:['يوم','يومين','أيام','يومًا']}[u],i=n==1?0:n==2?1:n<=10?2:3;return'بعد '+(n<3?F[i]:n+' '+F[i])}
+const W={fr:{m:'min',h:'h',d:'j'},en:{m:'min',h:'h',d:'d'},tr:{m:'dk',h:'sa',d:'gün'}}[L][u];return L=='tr'?n+' '+W+' sonra':(L=='fr'?'dans ':'in ')+n+' '+W},
 pt=b=>{const se=ev(sun,b),sa=x=>hz(sun(x),x).alt,ff=(f,u)=>{const r=roots(f,b,b+1,144).find(x=>x.up===u);return r&&r.t},dh=se.tr,mg=se.set,
 ah=dh?dg(Math.atan(1/(1+Math.tan(Math.abs(st.lat-sun(dh).dec)*P)))):0;return[ad(ff(x=>sa(x)+18,true),0),ad(dh,1),ad(dh?ff(x=>sa(x)-ah,false):0,2),ad(mg,3),ad(mg&&mg+.0625,4)]};
 function evl(days,far){const j=jn(),L=dt(j),b0=JD(L.getUTCFullYear(),L.getUTCMonth()+1,L.getUTCDate(),0)-st.tz/24,n=st.nf,o=[],D2=far||days,
 e0=n360(moon(j).lon-sun(j).lon),c1=conj(j-e0/12.19),c2=conj(j+(360-e0)/12.19),
-add=(t,k,a,b,l)=>{if(t&&t-(l||0)/1440>j-.02&&t<j+D2+1)o.push({t,k,a,b,l:l||0})};
-if(n.p)for(let d=0;d<days;d++){const b=b0+d;pt(b).forEach((t,i)=>add(t,'p'+i+'|'+Math.floor(b),'🕌 '+tt(NK[i]),tm(t),st.nl))}
+add=(t,k,a,b,c)=>{if(t&&t>j-.02&&t<j+D2+1)o.push({t,k,a:a.replace(/<[^>]*>/g,''),b:b.replace(/<[^>]*>/g,''),ld:LD(c),lt:ago(c)})};
+if(n.p)for(let d=0;d<days;d++){const b=b0+d;pt(b).forEach((t,i)=>add(t,'p'+i+'|'+Math.floor(b),'🕌 '+tt(NK[i]),tm(t),'p'))}
 const cj=[c1,c2];while(cj[cj.length-1]<j+D2)cj.push(conj(cj[cj.length-1]+29.53));
-if(n.n)cj.forEach(c=>add(c-.125,'n'+Math.round(c*24),'🌑 '+tt('اقتراب ميلاد الهلال'),tt('الاقتران')+': '+cfx(c)));
-if(n.s)cj.forEach(c=>cres(c).forEach(o2=>add(o2.ss-.0208,'s'+o2.N,'🌆 '+tt('ليلة استطلاع الهلال'),tt('غروب الشمس')+' '+tm(o2.ss,1))));
+if(n.n)cj.forEach(c=>add(c,'n'+Math.round(c*24),'🌑 '+tt('ميلاد الهلال (الاقتران)'),cfx(c),'n'));
+if(n.s)cj.forEach(c=>cres(c).forEach(o2=>add(o2.ss,'s'+o2.N,'🌆 '+tt('ليلة استطلاع الهلال'),tt('غروب الشمس')+' '+tm(o2.ss,1),'s')));
 if(n.h){const hp=new Intl.DateTimeFormat('en-u-ca-islamic-'+(st.hm=='obs'?'umalqura':st.hm)+'-nu-latn',{day:'numeric',month:'numeric',timeZone:'UTC'});
-for(let d=0;d<D2;d++){const b=b0+d,p=hp.formatToParts(dt(b+.5)),k=p.find(x=>x.type=='month').value+'-'+p.find(x=>x.type=='day').value;if(OC[k])add(b+.25,'h'+k+'|'+Math.floor(b),'🌙 '+tt(OC[k]),G.format(dt(b+.5)))}}
-if(n.z)zen(j).forEach(t=>{const m=cfx(t)+' — '+tt('بتوقيت مكة (UTC+3)')+' '+tmk(t),d0=Math.floor(t+.5+st.tz/24)-.5-st.tz/24;
-add(d0+.2917,'zd'+Math.round(t*24),'🕋 '+tt('اليوم تعامد الشمس على الكعبة'),m);if(ups(t))add(t-.0104,'zz'+Math.round(t*24),'🕋 '+tt('تعامد الشمس على الكعبة بعد 15 دقيقة'),m)});
+for(let d=0;d<D2;d++){const b=b0+d,p=hp.formatToParts(dt(b+.5)),k=p.find(x=>x.type=='month').value+'-'+p.find(x=>x.type=='day').value;if(OC[k])add(b+.25,'h'+k+'|'+Math.floor(b),'🌙 '+tt(OC[k]),G.format(dt(b+.5)),'h')}}
+if(n.z)zen(j).forEach(t=>add(t,'z'+Math.round(t*24),'🕋 '+tt('تعامد الشمس على الكعبة'),cfx(t)+' — '+tt('بتوقيت مكة (UTC+3)')+' '+tmk(t),'z'));
 if(n.e){const a=sols(j,c1,c2).lo,b=luns(j).lo;
-if(a&&a.l&&a.l.c1)add(a.l.c1-1/24,'es'+Math.round(a.tg*24),'🌑 '+tt('كسوف الشمس بعد ساعة'),tt(TS[a.ty])+' — '+cfx(a.l.mx));
-if(b&&b.a0)add(b.a0-1/24,'el'+Math.round(b.tg*24),'🌘 '+tt('خسوف القمر بعد ساعة'),tt(TL(b))+' — '+cfx(b.tg))}
+if(a&&a.l&&a.l.c1)add(a.l.c1,'es'+Math.round(a.tg*24),'🌑 '+tt('بداية كسوف الشمس'),tt(TS[a.ty])+' — '+cfx(a.l.mx),'e');
+if(b&&b.a0)add(b.a0,'el'+Math.round(b.tg*24),'🌘 '+tt('بداية خسوف القمر'),tt(TL(b))+' — '+cfx(b.tg),'e')}
 return o.sort((a,b)=>a.t-b.t)}
 let evK=0,evV=[];
 const evg=()=>{const k=Math.floor(jn()*24);if(k!=evK){evK=k;try{evV=evl(8)}catch(e){evV=[]}}return evV},
-snd=e=>{const o={body:e.b,icon:'icon-192.png',tag:e.k,vibrate:[200,100,200]};
-if(navigator.serviceWorker)navigator.serviceWorker.ready.then(r=>r.showNotification(e.a,o)).catch(()=>{try{new Notification(e.a,o)}catch(x){}});else try{new Notification(e.a,o)}catch(x){}},
+snd=(e,adv)=>{const a=adv?e.a+' — '+e.lt:e.a,o={body:e.b,icon:'icon-192.png',tag:e.k+(adv?'a':'t'),vibrate:[200,100,200]};
+if(navigator.serviceWorker)navigator.serviceWorker.ready.then(r=>r.showNotification(a,o)).catch(()=>{try{new Notification(a,o)}catch(x){}});else try{new Notification(a,o)}catch(x){}},
 nfk=()=>{if(!st.nf.on||!('Notification'in window)||Notification.permission!='granted')return;const j=jn();let f={};try{f=JSON.parse(localStorage.getItem('astroN')||'{}')}catch(x){}
-evg().forEach(e=>{const t=e.t-e.l/1440;if(t<=j&&t>j-.02&&!f[e.k]){f[e.k]=j;snd(e)}});Object.keys(f).forEach(k=>{if(f[k]<j-3)delete f[k]});try{localStorage.setItem('astroN',JSON.stringify(f))}catch(x){}},
-tki=()=>{$('#tkb').innerHTML=NK.map((n,i)=>`<div class=f><label>${tt(n)}</label><button data-t=${i} data-d=-1>−</button><input readonly value="${st.tk[i]>0?'+':''}${st.tk[i]}"><button data-t=${i} data-d=1>+</button></div>`).join('');$('#dzv').value=st.dz},
+evg().forEach(e=>[[e.t-e.ld,'a',e.ld>0],[e.t,'t',1]].forEach(([t,x,ok])=>{const k=e.k+x;if(ok&&t<=j&&t>j-.02&&!f[k]){f[k]=j;snd(e,x=='a')}}));
+Object.keys(f).forEach(k=>{if(f[k]<j-3)delete f[k]});try{localStorage.setItem('astroN',JSON.stringify(f))}catch(x){}},
 nfm=t=>{$('#nfm').textContent=tt(t)},
+tki=()=>{$('#tkb').innerHTML=NK.map((n,i)=>`<div class=f><label>${tt(n)}</label><button data-t=${i} data-d=-1>−</button><input readonly value="${st.tk[i]>0?'+':''}${st.tk[i]}"><button data-t=${i} data-d=1>+</button></div>`).join('');$('#dzv').value=st.dz},
 nfi=()=>{$('#nfc').innerHTML=Object.keys(NC).map(k=>`<button data-k=${k}${st.nf[k]?' class=on':''}>${tt(NC[k])}</button>`).join('');
-document.querySelectorAll('#nfo button').forEach(b=>b.classList.toggle('on',(b.dataset.v=='1')==!!st.nf.on));$('#nfl').value=st.nl},
+$('#nfd').innerHTML=Object.keys(NC).map(c=>{const[n,u]=st.ld[c];return`<div class=f><label>${tt(NC[c])}</label><button data-c=${c} data-d=-1>−</button><input readonly value=${n}><button data-c=${c} data-d=1>+</button><button data-c=${c} data-u=1>${tt({m:'دقيقة',h:'ساعة',d:'يوم'}[u])}</button></div>`}).join('');
+document.querySelectorAll('#nfo button').forEach(b=>b.classList.toggle('on',(b.dataset.v=='1')==!!st.nf.on))},
 icx=()=>{const e=evl(30,400),f=t=>new Date((t-2440587.5)*864e5).toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',q=s=>String(s).replace(/[\\;,]/g,'\\$&').replace(/\n/g,'\\n'),
-s='BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Falaki//AR\r\n'+e.map(x=>'BEGIN:VEVENT\r\nUID:'+x.k+'@falaki\r\nDTSTAMP:'+f(jn())+'\r\nDTSTART:'+f(x.t)+'\r\nDTEND:'+f(x.t+5/1440)+'\r\nSUMMARY:'+q(x.a)+'\r\nDESCRIPTION:'+q(x.b)+'\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:'+q(x.a)+'\r\nTRIGGER:-PT'+x.l+'M\r\nEND:VALARM\r\nEND:VEVENT\r\n').join('')+'END:VCALENDAR\r\n',
+al=(a,m)=>'BEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:'+q(a)+'\r\nTRIGGER:'+m+'\r\nEND:VALARM\r\n',
+s='BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Falaki//AR\r\n'+e.map(x=>'BEGIN:VEVENT\r\nUID:'+x.k+'@falaki\r\nDTSTAMP:'+f(jn())+'\r\nDTSTART:'+f(x.t)+'\r\nDTEND:'+f(x.t+5/1440)+'\r\nSUMMARY:'+q(x.a)+'\r\nDESCRIPTION:'+q(x.b)+'\r\n'+al(x.a,'PT0S')+(x.ld>0?al(x.a+' — '+x.lt,'-PT'+Math.max(1,Math.round(x.ld*1440))+'M'):'')+'END:VEVENT\r\n').join('')+'END:VCALENDAR\r\n',
 a=document.createElement('a');a.href=URL.createObjectURL(new Blob([s],{type:'text/calendar'}));a.download='falaki.ics';document.body.appendChild(a);a.click();a.remove()};
+const SDAT=`الشعرى اليمانية|Sirius (α Canis Majoris)|06 45 08.9|-16 42 58|-1.46|8.6|A1V
+سهيل|Canopus (α Carinae)|06 23 57.1|-52 41 44|-0.74|310|A9II
+رجل القنطورس|Rigil Kentaurus (α Centauri)|14 39 36.5|-60 50 02|-0.01|4.4|G2V+K1V
+السماك الرامح|Arcturus (α Boötis)|14 15 39.7|+19 10 57|-0.05|37|K1.5III
+النسر الواقع|Vega (α Lyrae)|18 36 56.3|+38 47 01|0.03|25|A0V
+العيّوق|Capella (α Aurigae)|05 16 41.4|+45 59 53|0.08|43|G8III
+رجل الجبار|Rigel (β Orionis)|05 14 32.3|-08 12 06|0.13|860|B8Ia
+الشعرى الشامية|Procyon (α Canis Minoris)|07 39 18.1|+05 13 30|0.34|11.5|F5IV
+آخر النهر|Achernar (α Eridani)|01 37 42.8|-57 14 12|0.46|139|B3V
+منكب الجوزاء|Betelgeuse (α Orionis)|05 55 10.3|+07 24 25|0.42|550|M1Ia
+هدار|Hadar (β Centauri)|14 03 49.4|-60 22 23|0.61|390|B1III
+النسر الطائر|Altair (α Aquilae)|19 50 47.0|+08 52 06|0.76|17|A7V
+أكروكس|Acrux (α Crucis)|12 26 35.9|-63 05 57|0.76|320|B0.5IV
+الدبران|Aldebaran (α Tauri)|04 35 55.2|+16 30 33|0.86|65|K5III|4
+قلب العقرب|Antares (α Scorpii)|16 29 24.5|-26 25 55|0.96|550|M1.5Iab|18
+السماك الأعزل|Spica (α Virginis)|13 25 11.6|-11 09 41|0.97|250|B1III|14
+رأس التوأم المؤخر (بولكس)|Pollux (β Geminorum)|07 45 18.9|+28 01 34|1.14|34|K0III|7
+فم الحوت|Fomalhaut (α Piscis Austrini)|22 57 39.0|-29 37 20|1.16|25|A3V
+ذنب الدجاجة|Deneb (α Cygni)|20 41 25.9|+45 16 49|1.25|2600|A2Ia
+ميموزا|Mimosa (β Crucis)|12 47 43.3|-59 41 19|1.25|280|B0.5III
+قلب الأسد|Regulus (α Leonis)|10 08 22.3|+11 58 02|1.36|79|B8IV
+عذارى|Adhara (ε Canis Majoris)|06 58 37.5|-28 58 20|1.50|430|B2Iab
+رأس التوأم المقدم (كاستور)|Castor (α Geminorum)|07 34 35.9|+31 53 18|1.58|51|A1V
+الشولة|Shaula (λ Scorpii)|17 33 36.5|-37 06 14|1.62|570|B2IV|19
+جاكروكس|Gacrux (γ Crucis)|12 31 09.9|-57 06 48|1.64|88|M3.5III
+بيلاتريكس|Bellatrix (γ Orionis)|05 25 07.9|+06 20 59|1.64|250|B2III
+النطح|Elnath (β Tauri)|05 26 17.5|+28 36 27|1.65|130|B7III
+ميابلاسيدوس|Miaplacidus (β Carinae)|09 13 12.0|-69 43 02|1.67|110|A1III
+النظم|Alnilam (ε Orionis)|05 36 12.8|-01 12 07|1.69|2000|B0Ia
+النير|Alnair (α Gruis)|22 08 14.0|-46 57 40|1.74|101|B6V
+النطاق|Alnitak (ζ Orionis)|05 40 45.5|-01 56 34|1.77|1260|O9.5Ib
+أليوث|Alioth (ε Ursae Majoris)|12 54 01.7|+55 57 35|1.76|83|A1III
+ظهر الدب (دبّة)|Dubhe (α Ursae Majoris)|11 03 43.7|+61 45 03|1.79|123|K0III
+ميرفاك|Mirfak (α Persei)|03 24 19.4|+49 51 40|1.79|510|F5Ib
+وزن|Wezen (δ Canis Majoris)|07 08 23.5|-26 23 36|1.83|1800|F8Ia
+سرجاس|Sargas (θ Scorpii)|17 37 19.1|-42 59 52|1.87|270|F0II
+كاوس أوستراليس|Kaus Australis (ε Sagittarii)|18 24 10.3|-34 23 05|1.85|143|B9.5III
+قائد بنات نعش|Alkaid (η Ursae Majoris)|13 47 32.4|+49 18 48|1.86|104|B3V
+منكالينان|Menkalinan (β Aurigae)|05 59 31.7|+44 56 51|1.90|82|A2IV
+أتريا|Atria (α Trianguli Australis)|16 48 39.9|-69 01 40|1.92|415|K2IIb
+الهنعة|Alhena (γ Geminorum)|06 37 42.7|+16 23 57|1.93|105|A0IV|6
+الطاووس|Peacock (α Pavonis)|20 25 38.9|-56 44 06|1.94|183|B2IV
+المرزم|Mirzam (β Canis Majoris)|06 22 42.0|-17 57 21|1.98|500|B1II
+الفرد (قلب الشجاع)|Alphard (α Hydrae)|09 27 35.2|-08 39 31|1.98|177|K3II
+النجم القطبي (الجدي)|Polaris (α Ursae Minoris)|02 31 49.1|+89 15 51|1.98|433|F7Ib
+رأس الحمل|Hamal (α Arietis)|02 07 10.4|+23 27 45|2.00|66|K2III
+الضفدع الثاني|Diphda (β Ceti)|00 43 35.4|-17 59 12|2.04|96|K0III
+النعائم (نونكي)|Nunki (σ Sagittarii)|18 55 15.9|-26 17 48|2.05|228|B2V|20
+منكنت|Menkent (θ Centauri)|14 06 41.0|-36 22 12|2.06|59|K0III
+الفرغ المؤخر (سرة الفرس)|Alpheratz (α Andromedae)|00 08 23.3|+29 05 26|2.06|97|B8IV|27
+بطن الحوت (ميراك)|Mirach (β Andromedae)|01 09 43.9|+35 37 14|2.05|197|M0III|28
+سيف الجبار|Saiph (κ Orionis)|05 47 45.4|-09 40 11|2.06|650|B0.5Ia
+كوكب|Kochab (β Ursae Minoris)|14 50 42.3|+74 09 20|2.08|130|K4III
+رأس الحواء|Rasalhague (α Ophiuchi)|17 34 56.1|+12 33 36|2.08|49|A5III
+رأس الغول|Algol (β Persei)|03 08 10.1|+40 57 20|2.12|90|B8V
+الجبهة|Algieba (γ Leonis)|10 19 58.4|+19 50 30|2.08|130|K0III|10
+الصرفة (ذنب الأسد)|Denebola (β Leonis)|11 49 03.6|+14 34 19|2.14|36|A3V|12
+الزبرة|Zosma (δ Leonis)|11 14 06.5|+20 31 25|2.56|58|A4V|11
+الفكة|Alphecca (α Coronae Borealis)|15 34 41.3|+26 42 53|2.23|75|A0V
+مزار|Mizar (ζ Ursae Majoris)|13 23 55.5|+54 55 31|2.23|83|A2V
+صدر الدجاجة|Sadr (γ Cygni)|20 22 13.7|+40 15 24|2.23|1800|F8Ib
+منتكا|Mintaka (δ Orionis)|05 32 00.4|-00 17 57|2.23|1200|O9.5II
+جبهة العقرب (دشوبا)|Dschubba (δ Scorpii)|16 00 20.0|-22 37 18|2.29|400|B0.3IV
+الإكليل (عقرب)|Acrab (β Scorpii)|16 05 26.2|-19 48 19|2.62|530|B1V|17
+الزبانى|Zubenelgenubi (α Librae)|14 50 52.7|-16 02 30|2.75|77|A3IV|16
+الشرطان|Sheratan (β Arietis)|01 54 38.4|+20 48 29|2.64|60|A5V|1
+البطين|Botein (δ Arietis)|03 11 37.7|+19 43 42|4.35|170|K2III|2
+الثريا (ألسيون)|Alcyone (η Tauri) — Pleiades|03 47 29.1|+24 06 19|2.87|440|B7III|3
+الهقعة|Meissa (λ Orionis)|05 35 08.3|+09 56 03|3.54|1100|O8III|5
+النثرة (عنقود المعلف)|Praesepe (M44, Cancer)|08 40 24.0|+19 40 00|3.1|590|Open cluster|8
+الطرف|Alterf (λ Leonis)|09 31 13.3|+22 58 52|4.31|330|K5III|9
+العواء|Zavijava (β Virginis)|11 50 41.7|+01 45 53|3.61|36|F9V|13
+الغفر|Syrma (ι Virginis)|14 16 00.9|-06 00 02|4.08|75|F7III|15
+البلدة|Albaldah (π Sagittarii)|19 02 36.7|-21 01 25|2.89|440|F2II|21
+سعد الذابح|Dabih (β Capricorni)|20 21 00.7|-14 46 53|3.08|330|K0II|22
+سعد بلع|Albali (ε Aquarii)|20 47 40.5|-09 29 45|3.77|205|A1V|23
+سعد السعود|Sadalsuud (β Aquarii)|21 31 33.5|-05 34 16|2.91|540|G0Ib|24
+سعد الأخبية|Sadachbia (γ Aquarii)|22 21 39.4|-01 23 14|3.84|164|A0V|25
+الفرغ المقدم (مرقب)|Markab (α Pegasi)|23 04 45.7|+15 12 19|2.49|133|B9III|26`,
+STR=SDAT.trim().split('\n').map(l=>{const a=l.split('|'),r=a[2].split(' ').map(Number),d=a[3].split(' ').map(Number);return{ar:a[0],la:a[1],ra:(r[0]+r[1]/60+r[2]/3600)*15,de:(a[3][0]=='-'?-1:1)*(Math.abs(d[0])+d[1]/60+d[2]/3600),v:+a[4],ly:+a[5],sp:a[6],mn:+(a[7]||0)}}),
+spc=(s,j)=>{const T=(j-2451545)/36525,z=(2306.2181*T+.30188*T*T+.017998*T**3)/3600,zz=(2306.2181*T+1.09468*T*T+.018203*T**3)/3600,th=(2004.3109*T-.42665*T*T-.041833*T**3)/3600,
+a=cs(s.de)*sn(s.ra+z),b=cs(th)*cs(s.de)*cs(s.ra+z)-sn(th)*sn(s.de),c=sn(th)*cs(s.de)*cs(s.ra+z)+cs(th)*sn(s.de);return{ra:n360(dg(at(a,b))+zz),dec:dg(as(c)),par:0,sd:0}},
+mnn=i=>(st.lg=='ar'?MA[i]:ML[i])+' ('+(i+1)+')',snm=s=>st.lg=='ar'?s.ar:s.la;
+function stl(){$('#sts').innerHTML=STR.map((s,i)=>`<option value=${i}>${snm(s)}${s.mn?' ☾'+s.mn:''}</option>`).join('');$('#sts').value=st.sx}
+function stc(j,j0,hs){try{const s=STR[st.sx]||STR[0],b=spc(s,j),h=hz(b,j),a=h.top+rf(h.top),e=ev(x=>spc(s,x),j0),dk=hs.top<-6,
+L2=STR.map(x=>{const q=hz(spc(x,j),j);return{x,az:q.az,a:q.top+rf(q.top)}}).filter(o=>o.a>5).sort((p,q)=>p.x.v-q.x.v).slice(0,10);
+return w('⭐ '+snm(s),row('الاسم',snm(s),1)+row('التسمية العلمية',s.la)+row('القدر الظاهري',s.v.toFixed(2))+row('البعد',U(s.ly,'سنة ضوئية'),1)+row('الطيف',s.sp)+(s.mn?row('منزلة من منازل القمر',mnn(s.mn-1),1):''))+
+w('🧭 الإحداثيات الاستوائية',row('المطلع المستقيم α',hms(b.ra/15))+row('المطلع المستقيم α (درجات)',dms(b.ra))+row('الميل δ',dms(b.dec,1))+row('الزاوية الساعية H',hms(n360(h.H)/15)))+
+w('📐 الإحداثيات الأفقية',row('الارتفاع الظاهري (مع الانكسار)',dms(a,1))+row('السمت A (من الشمال)',dms(h.az))+row('الحالة الآن',tt(a<=0?'تحت الأفق':dk?'فوق الأفق ويمكن رؤيته':'فوق الأفق لكن السماء مضيئة'),1))+
+w('🌅 الشروق والزوال والغروب',e.rise||e.set?row('الشروق',tm(e.rise,1))+row('الزوال',tm(e.tr,1))+row('الغروب',tm(e.set,1))+(e.rise&&e.set?row('مدة الظهور فوق الأفق',dur(((e.set-e.rise)%1+1)%1)):''):row('الزوال',tm(e.tr,1))+cnt(a>0||hz(spc(s,e.tr||j),e.tr||j).top>0?'نجم دائم الظهور في موقعك':'نجم لا يطلع في موقعك'))+
+w('🌟 أسطع النجوم فوق الأفق الآن',(dk?'':cnt('الشمس فوق الأفق: النجوم غير مرئية الآن'))+L2.map(o=>row(snm(o.x)+' ('+o.x.v.toFixed(1)+')',dms(o.az)+' / '+dms(o.a,1))).join('')+nt('القيمة: السمت / الارتفاع')+nt('إحداثيات النجوم لعام 2000 مع تصحيح المبادرة؛ دقتها نحو دقيقتين قوسيتين'))}catch(e){return''}}
+function qst(j,Q,hs){try{const T0='🌟 الاستدلال بالنجوم على القبلة';if(hs.top>-6)return w(T0,cnt('الشمس فوق الأفق أو الشفق: النجوم غير ظاهرة الآن'));
+const tn=x=>{const D=n180(x);return dms(Math.abs(D))+' '+tt(D>=0?'يمينًا':'يسارًا')},P0=STR.find(s=>s.la.startsWith('Polaris')),q0=hz(spc(P0,j),j),
+L=STR.filter(s=>s.v<=2.6).map(s=>{const q=hz(spc(s,j),j);return{s,az:q.az,a:q.top+rf(q.top)}}).filter(o=>o.a>8&&o.a<80).sort((p,q)=>Math.abs(n180(p.az-Q))-Math.abs(n180(q.az-Q))).slice(0,2);
+let k=st.lat>=5?row('ارتفاع النجم القطبي (الشمال الحقيقي)',dms(q0.top+rf(q0.top),1))+row('قف مواجهًا النجم القطبي ثم انعطف',tn(Q),1):'';
+k+=L.length&&Math.abs(n180(L[0].az-Q))<30?L.map(o=>row(snm(o.s)+' ('+o.s.v.toFixed(1)+')',dms(o.az)+' / '+dms(o.a,1))+row('قف مواجهًا هذا النجم ثم انعطف',tn(Q-o.az),1)).join(''):cnt('لا نجم لامع قرب سمت القبلة الآن');
+return w(T0,k)}catch(e){return''}}
+
 function render(){
 const j=jdNow(),L=dt(j),j0=JD(L.getUTCFullYear(),L.getUTCMonth()+1,L.getUTCDate(),0)-st.tz/24,
 su=sun(j),mo=moon(j),hs=hz(su,j),hm=hz(mo,j),se=ev(sun,j0),me=ev(moon,j0);
@@ -664,7 +797,8 @@ $('#s6').innerHTML=qib(j,j0,hs,cf);
 /* الوقت النجمي */
 const j00=Math.floor(j-.5)+.5,g0=gmst(j00),g1=gmst(j),nn=nut((j-2451545)/36525),q=nn.dpsi*cs(nn.eps),
 s2=g=>row('المتوسط',hms(g/15))+row('الظاهري',hms((g+q)/15));
-$('#s5').innerHTML=w('⭐ الوقت النجمي عند الساعة 0 (غرينتش)',row('بتاريخ UT',G.format(new Date((j00-2440587.5)*864e5)),1)+s2(g0))+w('🌍 الوقت النجمي العالمي (غرينتش)',s2(g1))+w('📍 الوقت النجمي المحلي',s2(g1+st.lon))+w('ℹ️ معادلة الاعتدالين',row('بالثواني',U((q*240).toFixed(3),'ثانية'),1))}
+$('#s5e').innerHTML=stc(j,j0,hs);
+$('#s5d').innerHTML=w('⭐ الوقت النجمي عند الساعة 0 (غرينتش)',row('بتاريخ UT',G.format(new Date((j00-2440587.5)*864e5)),1)+s2(g0))+w('🌍 الوقت النجمي العالمي (غرينتش)',s2(g1))+w('📍 الوقت النجمي المحلي',s2(g1+st.lon))+w('ℹ️ معادلة الاعتدالين',row('بالثواني',U((q*240).toFixed(3),'ثانية'),1))}
 /* التحكم */
 const msg=t=>$('#ms').textContent=tt(t),lab=()=>$('#dgt').textContent=st.ar?'123':'١٢٣',
 sync=()=>['lat','lon','tz'].forEach(i=>$('#'+i).value=+st[i].toFixed(5));
@@ -693,11 +827,13 @@ function lng(){const d=document.documentElement;d.lang=st.lg;d.dir=st.lg=='ar'?'
 const tw=document.createTreeWalker(document.body,4);let n;while(n=tw.nextNode()){if(n.parentNode.tagName=='SCRIPT'||!n.nodeValue.trim())continue;n._a=n._a||n.nodeValue;n.nodeValue=tt(n._a)}
 document.querySelectorAll('[placeholder]').forEach(e=>{e._p=e._p||e.placeholder;e.placeholder=tt(e._p)});
 document.querySelectorAll('#lg button').forEach(b=>b.classList.toggle('on',b.dataset.l==st.lg));$('#dgt').hidden=st.lg!='ar';
-$('#hm').innerHTML=Object.keys(HM).map(k=>`<button data-m=${k}>${tt(HM[k])}</button>`).join('');nfi();tki();hui()}
+$('#hm').innerHTML=Object.keys(HM).map(k=>`<button data-m=${k}>${tt(HM[k])}</button>`).join('');nfi();tki();stl();hui()}
 $('#lg').onclick=e=>{const l=e.target.dataset.l;if(l){st.lg=l;lng()}};
 $('#nfo').onclick=e=>{const v=e.target.dataset.v;if(v==null)return;if(v=='1'){if(!('Notification'in window))return nfm('المتصفح لا يدعم الإشعارات');Notification.requestPermission().then(p=>{st.nf.on=p=='granted'?1:0;nfm(st.nf.on?'':'لم يُمنح إذن الإشعارات: فعّله من إعدادات المتصفح للموقع');evK=0;save();nfi();nfk()})}else{st.nf.on=0;save();nfi()}};
 $('#nfc').onclick=e=>{const k=e.target.dataset.k;if(k){st.nf[k]=st.nf[k]?0:1;evK=0;save();nfi()}};
-document.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{st.nl=Math.max(0,Math.min(60,st.nl+ +b.dataset.n));evK=0;save();nfi()});
+$('#nfd').onclick=e=>{const c=e.target.dataset.c;if(!c)return;const a=st.ld[c],mx={m:180,h:48,d:30};
+if(e.target.dataset.u){a[1]={m:'h',h:'d',d:'m'}[a[1]];a[0]=Math.min(a[0],mx[a[1]])}else a[0]=Math.max(0,Math.min(mx[a[1]],a[0]+ +e.target.dataset.d*{m:5,h:1,d:1}[a[1]]));evK=0;save();nfi()};
+$('#sts').onchange=()=>{st.sx=+$('#sts').value;save();render()};
 $('#nfx').onclick=icx;
 $('#tkb').onclick=e=>{const i=e.target.dataset.t;if(i!=null){st.tk[i]=Math.max(-30,Math.min(30,st.tk[i]+ +e.target.dataset.d));evK=0;save();tki();render()}};
 document.querySelectorAll('[data-z]').forEach(b=>b.onclick=()=>{st.dz=Math.max(2,Math.min(8,+(st.dz+ +b.dataset.z).toFixed(1)));save();tki();render()});
